@@ -3,9 +3,10 @@
 :root {
     --header-height: 3rem;
     --nav-width: 68px;
-    --first-color: #4723D9;
-    --first-color-light: #AFA5D9;
-    --white-color: #F7F6FB;
+    --first-color: #FFCF00;
+    --first-color-light: #000000;
+    --white-color: #ffffff;
+    --black-color: #000000;
     --body-font: 'Nunito', sans-serif;
     --normal-font-size: 1rem;
     --z-fixed: 100
@@ -99,11 +100,11 @@ a {
 
 .nav_logo-icon {
     font-size: 1.25rem;
-    color: var(--white-color)
+    color: var(--black-color)
 }
 
 .nav_logo-name {
-    color: var(--white-color);
+    color: var(--black-color);
     font-weight: 700
 }
 
@@ -115,7 +116,7 @@ a {
 }
 
 .nav_link:hover {
-    color: var(--white-color)
+    color: var(--black-color)
 }
 
 .nav_icon {
@@ -131,7 +132,8 @@ a {
 }
 
 .active {
-    color: var(--white-color)
+    color: var(--white-color);
+    background-color: rgba(42, 56, 65, 0.82)
 }
 
 .active::before {
