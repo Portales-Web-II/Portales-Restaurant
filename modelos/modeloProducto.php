@@ -6,7 +6,7 @@ class Producto {
     private $db;
 
     public function __construct() {
-        $this->persona = array();
+        $this->producto = array();
         $this->db = new PDO('mysql:host=localhost;dbname=dbportalesrestaurant', "root", "Privado0721");
     }
 
