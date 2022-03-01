@@ -1,13 +1,15 @@
 <?php
-//require_once('configuracion/db.php');
+require_once('configuracion/db.php');
+
 class Producto {
     
     private $producto;
     private $db;
 
     public function __construct() {
+        require_once('configuracion/db.php');
         $this->producto = array();
-        $this->db = new PDO('mysql:host=localhost;dbname=dbportalesrestaurant', "root", "Privado0721");
+        $this->db = new PDO('mysql:host=localhost;dbname=dbportalesrestaurant', "root", "Privado0721@");
     }
 
     private function setNames() {
@@ -38,18 +40,18 @@ class Producto {
         }
     }
 
-    public function setGuardarProducto($nombre, $precio, $imagen, $descripcion, $estado, $idTipoProducto) {
+    // public function setGuardarProducto($nombre, $precio, $imagen, $descripcion, $estado, $idTipoProducto) {
 
-        self::setNames();
-        $sql = "INSERT INTO producto (nombre, precio, imagen, descripcion, estado, idTipoProducto) ('$nombre', '$precio', '$imagen', '$descripcion', '$estado', '$idTipoProducto')";
-        $result = $this->db->query($sql);
+    //     self::setNames();
+    //     $sql = "INSERT INTO producto (nombre, precio, imagen, descripcion, estado, idTipoProducto) ('$nombre', '$precio', '$imagen', '$descripcion', '$estado', '$idTipoProducto')";
+    //     $result = $this->db->query($sql);
 
-        if ($result) {
-            return true;
-        } else {
-            return false;
-        }
-    }
+    //     if ($result) {
+    //         return true;
+    //     } else {
+    //         return false;
+    //     }
+    // }
 
     public function setActualizarProducto($id, $nombre, $precio, $descripcion) {
 
