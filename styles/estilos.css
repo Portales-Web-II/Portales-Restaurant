@@ -181,3 +181,8 @@ a {
         padding-left: calc(var(--nav-width) + 188px)
     }
 }
+
+/* .card img{
+    height: 100px;
+    width: 100px;
+} */
