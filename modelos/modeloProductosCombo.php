@@ -5,11 +5,17 @@ class ProductosCombo {
     private $productosCombo;
     private $db;
 
-    public function __construct() {
-        $this->productosCombo = array();
-        $this->db = new PDO('mysql:host=localhost;dbname=dbportalesrestaurant', "root", "Privado0721@");
+    public function __construct()
+    {
+        try {
+            $this->productosCombo = array();
+            $this->db = new PDO('mysql:host=3.93.152.196;dbname=dbportalesrestaurant', "portales", "Portales123@");
+        } catch (PDOException $e) {
+            print "Error!: " . $e->getMessage() . "<br/>";
+            die();
+        }
     }
-
+    
     private function setNames() {
         return $this->db->query("SET NAMES 'utf8'");
     }
@@ -51,7 +57,7 @@ class ProductosCombo {
         }
     }
 
-    public function getBuscarIdProductosCombo(($id) {
+    public function getBuscarIdProductosCombo($id) {
 
         self::setNames();
         $sql = "SELECT idProductosCombo, idProducto, cantidad FROM productosCombo WHERE idProductosCombo like '%$id%'";
