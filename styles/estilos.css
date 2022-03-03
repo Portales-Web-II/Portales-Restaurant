@@ -1,197 +1,188 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap");
 
-*{
-    margin: 0;
-    padding: 0;
-}
-
 :root {
+    --header-height: 3rem;
+    --nav-width: 68px;
     --first-color: #FFCF00;
-    --second-color: #EEEFEF;
-    --third-color: #565757;
-    --fourth-color: #050505;
-    --white-color: #FFFFFF;
+    --first-color-light: #000000;
+    --white-color: #ffffff;
     --black-color: #000000;
-    --yellow-color: #E0B700;
     --body-font: 'Nunito', sans-serif;
     --normal-font-size: 1rem;
+    --z-fixed: 100
+}
+
+*,
+::before,
+::after {
+    box-sizing: border-box
 }
 
 body {
-    background-color: var(--white-color);
-    color: var(--black-color);
+    position: relative;
+    margin: var(--header-height) 0 0 0;
+    padding: 0 1rem;
     font-family: var(--body-font);
     font-size: var(--normal-font-size);
+    transition: .5s
 }
 
-.contenedor {
-    width: 100%;
-    max-width: 1000px;
-    margin: 20px auto;
-    display: grid;
-    grid-gap: 20px;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(3, auto);
-
-    grid-template-areas: "header header header"
-                        "contenido contenido contenido"
-                        "footer footer footer";
+a {
+    text-decoration: none
 }
 
-.contenedor .header {
+.header {
     width: 100%;
     height: var(--header-height);
+    position: fixed;
     top: 0;
     left: 0;
     display: flex;
+    align-items: center;
     justify-content: space-between;
-    background-color: var(--second-color);
+    padding: 0 1rem;
+    background-color: var(--white-color);
     z-index: var(--z-fixed);
-    transition: .5s;
-    grid-area: header;
+    transition: .5s
+}
+
+.header_toggle {
+    color: var(--first-color);
+    font-size: 1.5rem;
+    cursor: pointer
 }
 
 .header_img {
     width: 100%;
-    height: auto;
+    height: 35px;
     display: flex;
-    justify-content: right;
+    justify-content: center;
     overflow: hidden
 }
 
 .header_img img {
-    width: 200px;
+    width: 40px
 }
 
-.contenedor .contenido {
-    background-color: var(--white-color);
-    grid-area: contenido;
-}
-
-.contenedor .footer {
-    background-color: var(--third-color);
-    grid-area: footer;
-    display: flex;
-    justify-content: center;
-    bottom: 0;
-}
-
-.side-bar{
-    background: var(--first-color);
-    backdrop-filter: blur(15px);
-    height: 100%;
-    width: 230px;
+.l-navbar {
     position: fixed;
     top: 0;
-    left: -100%;
-    overflow-y: auto;
-    transition: 0.6s ease;
-    transition-property: left;
-    grid-area: sidebar;
+    left: -30%;
+    width: var(--nav-width);
+    height: 100vh;
+    background-color: var(--first-color);
+    padding: .5rem 1rem 0 0;
+    transition: .5s;
+    z-index: var(--z-fixed)
 }
 
-.side-bar.active {
-    left: 0;
+.nav {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden
 }
 
-.side-bar .menu{
-    width: 100%;
-    margin-top: 30%;
+.nav_logo,
+.nav_link {
+    display: grid;
+    grid-template-columns: max-content max-content;
+    align-items: center;
+    column-gap: 1rem;
+    padding: .5rem 0 .5rem 1.5rem
 }
 
-.side-bar .menu .item{
+.nav_logo {
+    margin-bottom: 2rem
+}
+
+.nav_logo-icon {
+    font-size: 1.25rem;
+    color: var(--black-color)
+}
+
+.nav_logo-name {
+    color: var(--black-color);
+    font-weight: 700
+}
+
+.nav_link {
     position: relative;
-    cursor: pointer;
+    color: var(--first-color-light);
+    margin-bottom: 1.5rem;
+    transition: .3s
 }
 
-.side-bar .menu .item a{
-    color: var(--black-color);
-    font-size: 16px;
-    text-decoration: none;
-    display: block;
-    padding: 5px 30px;
-    line-height: 60px;
+.nav_link:hover {
+    color: var(--black-color)
 }
 
-.side-bar .menu .item a:hover{
-    color: var(--second-color);
-    background: var(--third-color);
-    transition: 0.3s ease;
+.nav_icon {
+    font-size: 1.25rem
 }
 
-.side-bar .menu .item i{
-    margin-right: 15px;
+.show {
+    left: 0
 }
 
-.side-bar .menu .item a .dropdown {
-    position: absolute;
-    right: 0;
-    margin: 20px;
-    transition: 0.3s ease;
+.body-pd {
+    padding-left: calc(var(--nav-width) + 1rem)
 }
 
-.side-bar .menu .item .sub-menu {
-    background: var(--yellow-color);
-    display: none;
-}
-
-.side-bar .menu .item .sub-menu a {
-    color: var(--black-color);
-    padding-left: 80px;
-}
-
-.side-bar .menu .item .sub-menu a:hover {
+.active {
     color: var(--white-color);
-    background: var(--third-color);
-    transition: 0.3s ease;
+    background-color: rgba(42, 56, 65, 0.82)
 }
 
-.rotate {
-    transform: rotate(90deg);
-}
-
-.close-btn {
+.active::before {
+    content: '';
     position: absolute;
-    color: var(--black-color);
-    font-size: 20px;
-    right: 0;
-    margin: 25px;
-    cursor: pointer;
-}
-
-.menu-btn {
-    position: absolute;
-    color: var(--black-color);
-    font-size: 20px;
-    margin: 25px;
-    cursor: pointer;
+    left: 0;
+    width: 2px;
+    height: 32px;
+    background-color: var(--white-color)
 }
 
 .height-100 {
     height: 100vh
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (min-width: 768px) {
+    body {
+        margin: calc(var(--header-height) + 1rem) 0 0 0;
+        padding-left: calc(var(--nav-width) + 2rem)
+    }
 
-    .contenedor {
-        width: 100%;
-        height: auto;
-        grid-template-areas: "header header"
-                             "contenido contenido"
-                             "footer footer";
+    .header {
+        height: calc(var(--header-height) + 1rem);
+        padding: 0 2rem 0 calc(var(--nav-width) + 2rem)
     }
-    .height-100 {
-        height: auto;
-    }
-    .side-bar{
-        height: auto;
-    }
-    .header_img img {
+
+    .header_img {
         width: 150px;
+        height: 70px
     }
-    .contenedor .footer {
-        display: flex;
-        justify-content: center;
-        bottom: 0;
+
+    .header_img img {
+        width: 150px
+    }
+
+    .l-navbar {
+        left: 0;
+        padding: 1rem 1rem 0 0
+    }
+
+    .show {
+        width: calc(var(--nav-width) + 156px)
+    }
+
+    .body-pd {
+        padding-left: calc(var(--nav-width) + 188px)
     }
 }
+
+/* .card img{
+    height: 100px;
+    width: 100px;
+} */
