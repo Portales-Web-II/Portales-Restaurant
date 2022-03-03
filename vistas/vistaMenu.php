@@ -40,11 +40,11 @@ require_once('../controladores/controladorProducto.php');
 
     <div class="height-100 bg-light">
 
-        <div class="row g-2">
-            <div class="col-sm-4">
+        <div class="row g-2 justify-content-md-center">
+            <div class="col-sm-6">
                 <div class="card text-center" style="width: auto;">
                     <div class="container-sm">
-                        <img src="../src/imgs/desayuno_saludable_1.jpeg" class="card-img-top active img-fluid" style="height:350px; width:auto;" alt="...">
+                        <img src="../src/imgs/desayuno_saludable_1.jpeg" class="card-img-top active img-thumbnail" style="height:500px; width:100%;" alt="...">
                     </div>
                     <div class="card-body">
                         <h5 class="card-title">Desayunos</h5>
@@ -55,10 +55,10 @@ require_once('../controladores/controladorProducto.php');
                     </div>
                 </div>
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-6">
                 <div class="card text-center" style="width: auto;">
                     <div class="container-sm">
-                        <img src="../src/imgs/Almuerzos.jpg" class="card-img-top active img-fluid" style="height:350px; width:auto" alt="...">
+                        <img src="../src/imgs/Almuerzos.jpg" class="card-img-top active img-thumbnail" style="height:500px; width:100%;" alt="...">
                     </div>
                     <div class="card-body">
                         <h5 class="card-title">Almuerzos</h5>
@@ -69,10 +69,10 @@ require_once('../controladores/controladorProducto.php');
                     </div>
                 </div>
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-6">
                 <div class="card text-center" style="width: auto;">
                     <div class="container-sm">
-                        <img src="../src/imgs/cenas.jpg" class="card-img-top active img-fluid" style="height:350px; width:auto" alt="...">
+                        <img src="../src/imgs/cenas.jpg" class="card-img-top active img-thumbnail" style="height:500px; width:100%;" alt="...">
                     </div>
                     <div class="card-body">
                         <h5 class="card-title">Cenas</h5>
@@ -84,10 +84,10 @@ require_once('../controladores/controladorProducto.php');
                 </div>
             </div>
 
-            <div class="col-sm-4">
+            <div class="col-sm-6">
                 <div class="card text-center" style="width: auto;">
                     <div class="container-sm">
-                        <img src="../src/imgs/Combos.jpg" class="card-img-top active img-fluid" style="height:350px; width:auto" alt="...">
+                        <img src="../src/imgs/Combos.jpg" class="card-img-top active img-thumbnail" style="height:500px; width:100%;" alt="...">
                     </div>
                     <div class="card-body">
                         <h5 class="card-title">Combos</h5>
@@ -98,10 +98,10 @@ require_once('../controladores/controladorProducto.php');
                     </div>
                 </div>
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-6">
                 <div class="card text-center" style="width: auto;">
                     <div class="container-sm">
-                        <img src="../src/imgs/bebidas.jpg" class="card-img-top active img-fluid" style="height:350px; width:auto" alt="...">
+                        <img src="../src/imgs/bebidas.jpg" class="card-img-top active img-thumbnail" style="height:500px; width:100%;" alt="...">
                     </div>
                     <div class="card-body">
                         <h5 class="card-title">Bebidas</h5>
