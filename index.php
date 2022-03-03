@@ -8,34 +8,69 @@
     integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
     <link rel="stylesheet" href="./styles/estilos.css">
-    <script src="./js/menu.js"></script>
     <title>Portales Restaurant</title>
 </head>
-<body id="body-pd">
-    <header class="header" id="header">
-        <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div>
-        <div class="header_img"> <img src="./src/imgs/logoportalesw-preview.png" alt=""> </div>
-    </header>
-    <div class="l-navbar" id="nav-bar">
-        <nav class="nav">
-            <div> <a href="#" class="nav_logo"> <i class='bx bx-layer nav_logo-icon'></i> <span class="nav_logo-name">Portales Restaurant</span> </a>
-                <div class="nav_list"> 
-                    <a href="#" class="nav_link active"> <i class='bx bx-grid-alt nav_icon'></i> <span class="nav_name">Inicio</span> </a>
-                    <a href="./vistas/vistaMenu.php" class="nav_link"> <i class='bx bx-shopping-bag nav_icon'></i> <span class="nav_name">Ventas</span> </a> 
-                    <a href="#" class="nav_link"> <i class='bx bx-user nav_icon'></i> <span class="nav_name">Usuarios</span> </a> 
-                    <a href="#" class="nav_link"> <i class='bx bx-group nav_icon'></i> <span class="nav_name">Empleado</span> </a> 
-                    <a href="./vistas/vistaProductos.php" class="nav_link"> <i class='bx bx-cabinet nav_icon'></i> <span class="nav_name">Inventario</span> </a> 
+<body>
+    <div class="menu-btn">
+        <i class="fas fa-bars"></i>
+    </div>
+    <div class="side-bar">
+        <div class="close-btn">
+            <i class="fas fa-times"></i>
+        </div>
+        <div class="menu">
+            <div class="item"><a href=""> <i class="fas fa-home"></i>Inicio</a></div>
+            <div class="item"><a href="./vistas/vistaMenu.php"> <i class="fas fa-shopping-cart"></i>Ventas</a></div>
+            <div class="item"><a href=""> <i class="fas fa-user"></i>Usuarios</a></div>
+            <div class="item"><a href=""> <i class="fas fa-user"></i>Empleados</a></div>
+            <div class="item">
+                <a class="sub-btn"> <i class="fas fa-table"></i>Inventario<i class="fas fa-angle-right dropdown"></i></a>
+                <div class="sub-menu">
+                    <a class="item" href="#">Combos</a>
+                    <a class="item" href="./vistas/vistaProductos.php">Productos</a>
+                    <a class="item" href="#">Tipos Productos</a>
                 </div>
-            </div> <a href="#" class="nav_link"> <i class='bx bx-log-out nav_icon'></i> <span class="nav_name">SignOut</span> </a>
-        </nav>
+            </div>
+        </div>
     </div>
-    <!--Container Main start-->
-    <div class="height-100 bg-light">
-        <h4>Main Components</h4>
+    <div class="contenedor">
+
+        <header class="header" id="header">
+            <div class="header_img"> <img src="./src/imgs/logoportalesw-preview.png" alt=""> </div>
+        </header>
+
+        <main class="contenido">
+            <!--Container Main start-->
+            <div class="height-100 bg-light">
+                <h4>Main Components</h4>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p>Portales Restaurant. Derechos de autor</p>
+        </footer>
+
     </div>
 
+    <script type="text/javascript">
+        $(document).ready(function(){
+            //jquery para submenus
+            $('.sub-btn').click(function(){
+                $(this).next('.sub-menu').slideToggle();
+                $(this).find('.dropdown').toggleClass('rotate');
+            });
 
-
+            //jquery para abrir y cerrar menu
+            $('.menu-btn').click(function(){
+                $('.side-bar').addClass('active');
+                $('.menu-btn').css("visibility", "hidden");
+            });
+            $('.close-btn').click(function(){
+                $('.side-bar').removeClass('active');
+                $('.menu-btn').css("visibility", "visible");
+            });
+        });
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
