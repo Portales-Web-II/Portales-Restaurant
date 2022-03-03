@@ -29,89 +29,88 @@ require_once('../controladores/controladorProducto.php');
             <div> <a href="#" class="nav_logo"> <i class='bx bx-layer nav_logo-icon'></i> <span class="nav_logo-name">Portales Restaurant</span> </a>
                 <div class="nav_list">
                     <a href="../index.php" class="nav_link"> <i class='bx bx-grid-alt nav_icon'></i> <span class="nav_name">Inicio</span> </a>
-                    <a href="#" class="nav_link"> <i class='bx bx-shopping-bag nav_icon'></i> <span class="nav_name">Ventas</span> </a>
+                    <a href="./vistaMenu.php" class="nav_link"> <i class='bx bx-shopping-bag nav_icon'></i> <span class="nav_name">Ventas</span> </a>
                     <a href="#" class="nav_link"> <i class='bx bx-user nav_icon'></i> <span class="nav_name">Usuarios</span> </a>
                     <a href="#" class="nav_link"> <i class='bx bx-group nav_icon'></i> <span class="nav_name">Empleado</span> </a>
-                    <a href="#" class="nav_link active"> <i class='bx bx-cabinet nav_icon'></i> <span class="nav_name">Inventario</span> </a>
+                    <a href="./vistaProductos.php" class="nav_link active"> <i class='bx bx-cabinet nav_icon'></i> <span class="nav_name">Inventario</span> </a>
                 </div>
             </div> <a href="#" class="nav_link"> <i class='bx bx-log-out nav_icon'></i> <span class="nav_name">SignOut</span> </a>
         </nav>
     </div>
 
-    <div class="height-100 bg-light">
-
-        <div class="row g-2 justify-content-md-center">
-            <div class="col-sm-6">
-                <div class="card text-center" style="width: auto;">
-                    <div class="container-sm">
-                        <img src="../src/imgs/desayuno_saludable_1.jpeg" class="card-img-top active img-thumbnail" style="height:500px; width:100%;" alt="...">
-                    </div>
+    <div class="container-fluid bg-light">
+        <div class="row row-cols-1 row-cols-md-2 g-4 justify-content-md-center">
+            <div class="col">
+                <div class="card h-100">
+                    <img src="../src/imgs/desayuno_saludable_1.jpeg" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">Desayunos</h5>
                         <p class="card-text">Diversos tipos de Desayunos tipicos, rapidos, sencillos entre otros más</p>
+                    </div>
+                    
                         <div class="d-grid gap-2">
                             <a href="#" class="btn btn-warning">Ver</a>
                         </div>
-                    </div>
+                    
                 </div>
             </div>
-            <div class="col-sm-6">
-                <div class="card text-center" style="width: auto;">
-                    <div class="container-sm">
-                        <img src="../src/imgs/Almuerzos.jpg" class="card-img-top active img-thumbnail" style="height:500px; width:100%;" alt="...">
-                    </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="../src/imgs/Almuerzos.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">Almuerzos</h5>
                         <p class="card-text">Diversos tipos de Almuerzos tipicos, rapidos, sencillos entre otros más.</p>
+                    </div>
+                    
                         <div class="d-grid gap-2">
                             <a href="#" class="btn btn-warning">Ver</a>
                         </div>
-                    </div>
+                    
                 </div>
             </div>
-            <div class="col-sm-6">
-                <div class="card text-center" style="width: auto;">
-                    <div class="container-sm">
-                        <img src="../src/imgs/cenas.jpg" class="card-img-top active img-thumbnail" style="height:500px; width:100%;" alt="...">
-                    </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="../src/imgs/cenas.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">Cenas</h5>
                         <p class="card-text">Diversos tipos de Cenas tipicos, rapidos, sencillos entre otros más.</p>
+                    </div>
+                    
                         <div class="d-grid gap-2">
                             <a href="#" class="btn btn-warning">Ver</a>
                         </div>
-                    </div>
+                    
                 </div>
             </div>
-
-            <div class="col-sm-6">
-                <div class="card text-center" style="width: auto;">
-                    <div class="container-sm">
-                        <img src="../src/imgs/Combos.jpg" class="card-img-top active img-thumbnail" style="height:500px; width:100%;" alt="...">
-                    </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="../src/imgs/Combos.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">Combos</h5>
                         <p class="card-text">Diversos tipos de Combos tipicos, rapidos, sencillos entre otros más.</p>
+                    </div>
+                    
                         <div class="d-grid gap-2">
                             <a href="#" class="btn btn-warning">Ver</a>
                         </div>
-                    </div>
+                    
                 </div>
             </div>
-            <div class="col-sm-6">
-                <div class="card text-center" style="width: auto;">
-                    <div class="container-sm">
-                        <img src="../src/imgs/bebidas.jpg" class="card-img-top active img-thumbnail" style="height:500px; width:100%;" alt="...">
-                    </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="../src/imgs/bebidas.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">Bebidas</h5>
                         <p class="card-text">Diversos tipos de bebidas tipicas, frías, calientes entre otros más.</p>
+                    </div>
+                    
                         <div class="d-grid gap-2">
                             <a href="#" class="btn btn-warning">Ver</a>
                         </div>
-                    </div>
+                    
                 </div>
             </div>
+
         </div>
 
 

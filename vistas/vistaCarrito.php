@@ -19,7 +19,7 @@ require_once('../controladores/controladorProducto.php');
     <header class="header" id="header">
         <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div>
         <div>
-            <h4>Ordenes</h4>
+            <h4>Productos</h4>
         </div>
         <div class="header_img"> <img src="../src/imgs/logoportalesw-preview.png"> </div>
     </header>
@@ -29,19 +29,45 @@ require_once('../controladores/controladorProducto.php');
             <div> <a href="#" class="nav_logo"> <i class='bx bx-layer nav_logo-icon'></i> <span class="nav_logo-name">Portales Restaurant</span> </a>
                 <div class="nav_list">
                     <a href="../index.php" class="nav_link"> <i class='bx bx-grid-alt nav_icon'></i> <span class="nav_name">Inicio</span> </a>
-                    <a href="#" class="nav_link"> <i class='bx bx-shopping-bag nav_icon'></i> <span class="nav_name">Ventas</span> </a>
+                    <a href="./vistaMenu.php" class="nav_link"> <i class='bx bx-shopping-bag nav_icon'></i> <span class="nav_name">Ventas</span> </a>
                     <a href="#" class="nav_link"> <i class='bx bx-user nav_icon'></i> <span class="nav_name">Usuarios</span> </a>
                     <a href="#" class="nav_link"> <i class='bx bx-group nav_icon'></i> <span class="nav_name">Empleado</span> </a>
-                    <a href="#" class="nav_link active"> <i class='bx bx-cabinet nav_icon'></i> <span class="nav_name">Inventario</span> </a>
+                    <a href="./vistaProductos.php" class="nav_link active"> <i class='bx bx-cabinet nav_icon'></i> <span class="nav_name">Inventario</span> </a>
                 </div>
             </div> <a href="#" class="nav_link"> <i class='bx bx-log-out nav_icon'></i> <span class="nav_name">SignOut</span> </a>
         </nav>
     </div>
 
-    <div class="height-100 bg-light">
-
+    <div class="container-fluid bg-light">
+    <div class="">
+        <h1>Ordenes del pedido</h1>
+        <br>
     </div>
 
+    <div class="tab pane carrito">
+        <table class="table table-hover">
+            <thead>
+              <tr> 
+                <th scope="col">#</th>
+                <th scope="col">Producto</th>
+                <th scope="col">Precio</th>
+                <th scope="col">Cantidad</th>
+              </tr>
+            </thead>
+            <tbody class="tbody">
+
+            </tbody>
+          </table>
+          <br><br>
+          <row class="mx-4">
+              <div class="col">
+                  <h3 class="itemCartTotal">Total: 0</h3>
+              </div>
+              <div class="col d-flex justify-content-end">
+                  <a class="btn btn-success" onclick="showModal()">Facturar</a>
+              </div>
+
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
