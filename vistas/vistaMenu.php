@@ -42,8 +42,10 @@ require_once('../controladores/controladorProducto.php');
 
         <div class="row g-2">
             <div class="col-sm-4">
-                <div class="card text-center" style="width: 100%;">
-                    <img src="../src/imgs/desayuno_saludable_1.jpeg" class="card-img-top" alt="...">
+                <div class="card text-center" style="width: auto;">
+                    <div class="container-sm">
+                        <img src="../src/imgs/desayuno_saludable_1.jpeg" class="card-img-top active img-fluid" style="height:350px; width:auto;" alt="...">
+                    </div>
                     <div class="card-body">
                         <h5 class="card-title">Desayunos</h5>
                         <p class="card-text">Diversos tipos de Desayunos tipicos, rapidos, sencillos entre otros más</p>
@@ -54,8 +56,10 @@ require_once('../controladores/controladorProducto.php');
                 </div>
             </div>
             <div class="col-sm-4">
-                <div class="card text-center" style="width: 100%; height:auto;">
-                    <img src="../src/imgs/Almuerzos.jpg" class="card-img-top img-fluid" alt="...">
+                <div class="card text-center" style="width: auto;">
+                    <div class="container-sm">
+                        <img src="../src/imgs/Almuerzos.jpg" class="card-img-top active img-fluid" style="height:350px; width:auto" alt="...">
+                    </div>
                     <div class="card-body">
                         <h5 class="card-title">Almuerzos</h5>
                         <p class="card-text">Diversos tipos de Almuerzos tipicos, rapidos, sencillos entre otros más.</p>
@@ -67,7 +71,9 @@ require_once('../controladores/controladorProducto.php');
             </div>
             <div class="col-sm-4">
                 <div class="card text-center" style="width: auto;">
-                    <img src="../src/imgs/desayuno_saludable_1.jpeg" class="card-img-top" alt="...">
+                    <div class="container-sm">
+                        <img src="../src/imgs/cenas.jpg" class="card-img-top active img-fluid" style="height:350px; width:auto" alt="...">
+                    </div>
                     <div class="card-body">
                         <h5 class="card-title">Cenas</h5>
                         <p class="card-text">Diversos tipos de Cenas tipicos, rapidos, sencillos entre otros más.</p>
@@ -80,10 +86,12 @@ require_once('../controladores/controladorProducto.php');
 
             <div class="col-sm-4">
                 <div class="card text-center" style="width: auto;">
-                    <img src="../src/imgs/desayuno_saludable_1.jpeg" class="card-img-top" alt="...">
+                    <div class="container-sm">
+                        <img src="../src/imgs/Combos.jpg" class="card-img-top active img-fluid" style="height:350px; width:auto" alt="...">
+                    </div>
                     <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <h5 class="card-title">Combos</h5>
+                        <p class="card-text">Diversos tipos de Combos tipicos, rapidos, sencillos entre otros más.</p>
                         <div class="d-grid gap-2">
                             <a href="#" class="btn btn-warning">Ver</a>
                         </div>
@@ -92,10 +100,12 @@ require_once('../controladores/controladorProducto.php');
             </div>
             <div class="col-sm-4">
                 <div class="card text-center" style="width: auto;">
-                    <img src="../src/imgs/desayuno_saludable_1.jpeg" class="card-img-top" alt="...">
+                    <div class="container-sm">
+                        <img src="../src/imgs/bebidas.jpg" class="card-img-top active img-fluid" style="height:350px; width:auto" alt="...">
+                    </div>
                     <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <h5 class="card-title">Bebidas</h5>
+                        <p class="card-text">Diversos tipos de bebidas tipicas, frías, calientes entre otros más.</p>
                         <div class="d-grid gap-2">
                             <a href="#" class="btn btn-warning">Ver</a>
                         </div>
