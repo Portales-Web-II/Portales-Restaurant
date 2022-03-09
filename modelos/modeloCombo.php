@@ -31,6 +31,17 @@ class Combo {
         $this->db = null;
     }
 
+    public function getComboActivos() {
+
+        self::setNames();
+        $sql = "SELECT idCombo, nombre, precio, imagen, detalle, estado, categoria, idProductosCombo FROM combo where estado = 'activo'";
+        foreach ($this->db->query($sql) as $res) {
+            $this->combo[] = $res;
+        }
+        return $this->combo;
+        $this->db = null;
+    }
+
     // public function setGuardarCombo($nombre, $precio, $categoria, $idProductosCombo) {
 
     //     self::setNames();

@@ -1,21 +1,7 @@
 <?php
 include('../controladores/controladorMenus.php');
-$TipoProductos = "bebida";
 ?>
-<?php
 
-function write_to_console($data) {
- $console = $data;
- if (is_array($console))
- $console = implode(',', $console);
-
- echo "<script>console.log('Console: " . $console . "' );</script>";
-}
-
-write_to_console($TipoProductos);
-write_to_console($SubTipoProductos);
-
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -54,13 +40,14 @@ write_to_console($SubTipoProductos);
     </div>
 
     <div class="container-fluid bg-light">
-        <div class="row g-4 justify-content-md-center">
+        <!-- <div class="row g-4 justify-content-md-center"> -->
+        <div class="row row-cols-1 row-cols-md-2 g-4 justify-content-md-center">
             <?php
-            $lista = listar($TipoProductos, $SubTipoProductos);
+            $lista = listar("comida", "");
             for ($i = 0; $i < count($lista); $i++) {
             ?>
-                <div class="col-lg-3 col-md-6 col-sm-9">
-                    <div class="card h-100 text-center" style="width: 18rem;">
+                <div class="col">
+                    <div class="card h-100 text-center">
                         <img src="../src/imgs/Almuerzos.jpg" class="card-img-top" alt="...">
                         <div class="card-body">
                             <h5 class="card-title text-capitalize"><?php echo $lista[$i]["nombre"]; ?></h5>

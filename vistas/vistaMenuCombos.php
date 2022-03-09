@@ -1,6 +1,7 @@
 <?php
-require_once('../controladores/controladorProducto.php')
+include('../controladores/controladorCombo.php');
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -30,8 +31,8 @@ require_once('../controladores/controladorProducto.php')
                 <div class="nav_list">
                     <a href="../index.php" class="nav_link"> <i class='bx bx-grid-alt nav_icon'></i> <span class="nav_name">Inicio</span> </a>
                     <a href="./vistaMenu.php" class="nav_link"> <i class='bx bx-shopping-bag nav_icon'></i> <span class="nav_name">Ventas</span> </a>
-                    <a href="./vistaUsuario.php" class="nav_link"> <i class='bx bx-user nav_icon'></i> <span class="nav_name">Usuarios</span> </a>
-                    <a href="./vistaPersona.php" class="nav_link"> <i class='bx bx-group nav_icon'></i> <span class="nav_name">Empleado</span> </a>
+                    <a href="#" class="nav_link"> <i class='bx bx-user nav_icon'></i> <span class="nav_name">Usuarios</span> </a>
+                    <a href="#" class="nav_link"> <i class='bx bx-group nav_icon'></i> <span class="nav_name">Empleado</span> </a>
                     <a href="./vistaProductos.php" class="nav_link active"> <i class='bx bx-cabinet nav_icon'></i> <span class="nav_name">Inventario</span> </a>
                 </div>
             </div> <a href="#" class="nav_link"> <i class='bx bx-log-out nav_icon'></i> <span class="nav_name">SignOut</span> </a>
@@ -39,45 +40,49 @@ require_once('../controladores/controladorProducto.php')
     </div>
 
     <div class="container-fluid bg-light">
+        <!-- <div class="row g-4 justify-content-md-center"> -->
         <div class="row row-cols-1 row-cols-md-2 g-4 justify-content-md-center">
             <?php
-            $lista = listarTTp();
+            $lista = listarActivos();
             for ($i = 0; $i < count($lista); $i++) {
             ?>
                 <div class="col">
-                    <div class="card h-100">
-                        <img src="../src/imgs/desayuno_saludable_1.jpeg" class="card-img-top" alt="...">
+                    <div class="card h-100 text-center">
+                        <img src="../src/imgs/Almuerzos.jpg" class="card-img-top" alt="...">
                         <div class="card-body">
-                            <p class="card-text text-capitalize fs-5"><?php echo $lista[$i]["tipo"]; ?></p>
-                            <h5 class="card-title text-capitalize fs-1"><?php echo $lista[$i]["subTipo"]; ?></h5>
+                            <h5 class="card-title text-capitalize"><?php echo $lista[$i]["nombre"]; ?></h5>
+                            <p class="card-text"><?php echo $lista[$i]["detalle"]; ?></p>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item d-flex justify-content-between align-items-start">
+                                    <div class="ms-2 me-auto">
+                                        <div class="fw-bold">Subheading</div>
+                                        Content for list item
+                                    </div>
+                                    <span class="badge bg-primary rounded-pill">14</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-start">
+                                    <div class="ms-2 me-auto">
+                                        <div class="fw-bold">Subheading</div>
+                                        Content for list item
+                                    </div>
+                                    <span class="badge bg-primary rounded-pill">14</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-start">
+                                    <div class="ms-2 me-auto">
+                                        <div class="fw-bold">Subheading</div>
+                                        Content for list item
+                                    </div>
+                                    <span class="badge bg-primary rounded-pill">14</span>
+                                </li>
+                            </ul>
+                            <a href="#" class="btn btn-warning">Agregar al carrito</a>
                         </div>
-
-                        <div class="d-grid gap-2">
-                            <a href="#" class="btn btn-warning">Ver</a>
-                        </div>
-
                     </div>
                 </div>
             <?php
             };
             ?>
-            <div class="col">
-                <div class="card h-100">
-                    <img src="../src/imgs/desayuno_saludable_1.jpeg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <p class="card-text fs-5">Combos de comidas y bebidas</p>
-                        <h5 class="card-title fs-1">Combos</h5>
-                    </div>
-
-                    <div class="d-grid gap-2">
-                        <a href="#" class="btn btn-warning">Ver</a>
-                    </div>
-
-                </div>
-            </div>
         </div>
-
-
     </div>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
