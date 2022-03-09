@@ -1,5 +1,8 @@
 <?php
-    class Usuarios{
+
+    require '../configuracion/db.php';
+
+    class Usuarios extends DB{
         private $usuario;
         private $db;
 
@@ -27,6 +30,12 @@
             }
             return $this->usuario;
             $this->db = null;
+        }
+
+        public function setUsuario(){
+
+            
+
         }
 
     }
