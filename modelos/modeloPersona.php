@@ -1,5 +1,4 @@
 <?php
-require_once '../bd/ConectaBD.php';
 
 class Personas{
 
@@ -13,7 +12,7 @@ class Personas{
             $this->personas = array();
             $this->cargos = array();
             $this->id = null;
-            $this->db = new PDO('mysql:host=localhost;dbname=dbportalesrestaurant', "root", "Privado0721");
+            $this->db = new PDO('mysql:host=3.93.152.196;dbname=dbportalesrestaurant', "portales", "Portales123@");
         } catch (PDOException $e) {
             print "Error!: " . $e->getMessage() . "<br/>";
             die();
@@ -26,9 +25,11 @@ class Personas{
 
     public function getPersonas(){
         self::setNames();
-        $sql = "SELECT p.idPersona, p.nombre, p.apellido, p.telefono, p.idCargo, c.nombreCargo, p.direccion
+        $sql = "SELECT p.idPersona, p.nombre, p.apellido, p.telefono, p.idCargo, c.nombreCargo, p.direccion,
+            p.estado
             FROM persona p 
-            join cargos c on c.idCargos = p.idCargo";
+            join cargos c on c.idCargos = p.idCargo
+            ";
         foreach ($this->db->query($sql) as $res) {
             $this->personas[] = $res;
         }
@@ -47,12 +48,12 @@ class Personas{
         $this->db = null;
     }
 
-     public function setGuardarPersonas($nombre, $apellido, $telefono, $idCargo, $direccion) {
+     public function setGuardarPersonas($nombre, $apellido, $telefono, $idCargo, $direccion, $estado) {
 
         self::setNames();
          //$sql = "INSERT INTO producto (nombre, precio, idTipoProducto) ('$nombre', '$precio', '$idTipoProducto')";
-        $sql = "INSERT INTO persona( nombre, apellido, telefono, idCargo, direccion, deleted_at) 
-            VALUES ('$nombre','$apellido', '$telefono', '$idCargo', '$direccion', now() )";
+        $sql = "INSERT INTO persona( nombre, apellido, telefono, idCargo, direccion, estado) 
+            VALUES ('$nombre','$apellido', '$telefono', '$idCargo', '$direccion', '$estado' )";
         $result = $this->db->query($sql);
          
         
@@ -66,9 +67,9 @@ class Personas{
             }
 
             $sql_personas = "select * from (
-            SELECT p.idPersona, p.nombre, p.apellido, p.telefono, p.idCargo, c.nombreCargo, p.direccion
+            SELECT p.idPersona, p.nombre, p.apellido, p.telefono, p.idCargo, c.nombreCargo, p.direccion, p.estado
             FROM persona p 
-            join cargos c on c.idCargos = p.idCargo
+            join cargos c on c.idCargos = p.idCargo            
             )x
             where x.idPersona = '$this->id'";
 
@@ -83,18 +84,18 @@ class Personas{
          }
     }
 
-    public function setActualizarPersonas($idPersona, $nombre, $apellido, $telefono, $idCargo, $direccion) {
+    public function setActualizarPersonas($idPersona, $nombre, $apellido, $telefono, $idCargo, $direccion, $estado) {
 
          self::setNames();
-         $sql = "UPDATE persona SET nombre='$nombre',apellido='$apellido',telefono='$telefono',idCargo='$idCargo',direccion='$direccion'
+         $sql = "UPDATE persona SET nombre='$nombre',apellido='$apellido',telefono='$telefono',idCargo='$idCargo',direccion='$direccion', estado='$estado'
             WHERE idPersona = '$idPersona' ";
          $result = $this->db->query($sql);                 
 
          if ($result) {
             $sql_personas = "select * from (
-            SELECT p.idPersona, p.nombre, p.apellido, p.telefono, p.idCargo, c.nombreCargo, p.direccion
+            SELECT p.idPersona, p.nombre, p.apellido, p.telefono, p.idCargo, c.nombreCargo, p.direccion, p.estado
             FROM persona p 
-            join cargos c on c.idCargos = p.idCargo
+            join cargos c on c.idCargos = p.idCargo            
             )x
             where x.idPersona = '$idPersona'";
 
@@ -112,7 +113,7 @@ class Personas{
     public function setEliminarPersonas( $idPersona ) {
 
          self::setNames();
-         $sql = "DELETE FROM persona WHERE idPersona = '$idPersona'";
+         $sql = "update persona set estado = 'inactivo' WHERE idPersona = '$idPersona'";
          $result = $this->db->query($sql);
 
          if ($result) {

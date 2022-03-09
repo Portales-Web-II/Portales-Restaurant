@@ -8,21 +8,21 @@ if( isset( $funcion ) ){
 }
 
 function personas_listar(){
-    require_once('../modelos/modeloPersonas.php');
+    require_once('../modelos/modeloPersona.php');
      $modeloPersonas = new Personas();
      return $modeloPersonas->getPersonas();
 
 }
 
 function cargos_listar(){
-    require_once('../modelos/modeloPersonas.php');
+    require_once('../modelos/modeloPersona.php');
      $modeloPersonas = new Personas();
      return $modeloPersonas->getCargos();
 
 }
 
 function guardar_personas(){
-    require_once('../modelos/modeloPersonas.php');
+    require_once('../modelos/modeloPersona.php');
     $modeloPersonas = new Personas();
      
     $idPersona= !empty($_POST['idPersona']) ? $_POST['idPersona'] : null; 
@@ -31,19 +31,20 @@ function guardar_personas(){
     $telefono= !empty($_POST['telefono']) ? $_POST['telefono'] : null; 
     $idCargo= !empty($_POST['idCargo']) ? $_POST['idCargo'] : null; 
     $direccion= !empty($_POST['direccion']) ? $_POST['direccion'] : null; 
+    $estado= !empty($_POST['estado']) ? $_POST['estado'] : null; 
     $accion= !empty($_POST['accion']) ? $_POST['accion'] : null; 
      
     try {
 	if($accion==1){
 			
             header('Content-Type: application/json');
-            echo json_encode( $modeloPersonas->setGuardarPersonas($nombre, $apellido, $telefono, $idCargo, $direccion)
+            echo json_encode( $modeloPersonas->setGuardarPersonas($nombre, $apellido, $telefono, $idCargo, $direccion, $estado)
                     , JSON_PRETTY_PRINT);
 		
         }else if($accion==2){
             
             header('Content-Type: application/json');
-            echo json_encode( $modeloPersonas->setActualizarPersonas($idPersona, $nombre, $apellido, $telefono, $idCargo, $direccion)
+            echo json_encode( $modeloPersonas->setActualizarPersonas($idPersona, $nombre, $apellido, $telefono, $idCargo, $direccion, $estado)
                     , JSON_PRETTY_PRINT);
         }else if($accion==3){
             
