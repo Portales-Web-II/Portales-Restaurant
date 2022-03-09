@@ -1,4 +1,21 @@
-<?require('')?>
+<?php
+include('../controladores/controladorMenus.php');
+$TipoProductos = "bebida";
+?>
+<?php
+
+function write_to_console($data) {
+ $console = $data;
+ if (is_array($console))
+ $console = implode(',', $console);
+
+ echo "<script>console.log('Console: " . $console . "' );</script>";
+}
+
+write_to_console($TipoProductos);
+write_to_console($SubTipoProductos);
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -37,24 +54,30 @@
     </div>
 
     <div class="container-fluid bg-light">
-        <div class="row row-cols-1 row-cols-md-2 g-4 justify-content-md-center">
-            <div class="col">
-                <div class="card h-100">
-                    <img src="../src/imgs/desayuno_saludable_1.jpeg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Desayunos</h5>
-                        <p class="card-text">Diversos tipos de Desayunos tipicos, rapidos, sencillos entre otros más</p>
+        <div class="row g-4 justify-content-md-center">
+            <?php
+            $lista = listar($TipoProductos, $SubTipoProductos);
+            for ($i = 0; $i < count($lista); $i++) {
+            ?>
+                <div class="col-lg-3 col-md-6 col-sm-9">
+                    <div class="card h-100 text-center" style="width: 18rem;">
+                        <img src="../src/imgs/Almuerzos.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title text-capitalize"><?php echo $lista[$i]["nombre"]; ?></h5>
+                            <p class="card-text"><?php echo $lista[$i]["descripcion"]; ?></p>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item text-capitalize"><?php echo $lista[$i]["Tipo"]; ?></li>
+                                <li class="list-group-item text-capitalize"><?php echo $lista[$i]["SubTipo"]; ?></li>
+                                <li class="list-group-item fw-bolder"> Lps. <?php echo $lista[$i]["precio"]; ?></li>
+                            </ul>
+                            <a href="#" class="btn btn-warning">Agregar al carrito</a>
+                        </div>
                     </div>
-
-                    <div class="d-grid gap-2">
-                        <a href="#" class="btn btn-warning" onClick="<?php $TipoProductos = "comida";  $SubTipoProductos = "desayunos"; ?>">Ver</a>
-                    </div>
-
                 </div>
-            </div>
+            <?php
+            };
+            ?>
         </div>
-
-
     </div>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -62,18 +85,4 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
-<?php
-
-function write_to_console($data) {
- $console = $data;
- if (is_array($console))
- $console = implode(',', $console);
-
- echo "<script>console.log('Console: " . $console . "' );</script>";
-}
-
-write_to_console($TipoProductos);
-write_to_console($SubTipoProductos);
-
-?>
 </html>
