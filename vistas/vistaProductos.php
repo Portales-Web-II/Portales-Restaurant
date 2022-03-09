@@ -195,7 +195,7 @@ require_once('../controladores/controladorProducto.php');
                       $listaId = listarIdT();
                       for ($i = 0; $i < count($listaId); $i++) {
                       ?>
-                        <option value="<?php [$i] ?>"><?php
+                        <option value="<?php $id++ ?>"><?php
                                 echo $listaId[$i]["idTipoProducto"];
                                 ?></option>
                       <?php
@@ -204,7 +204,7 @@ require_once('../controladores/controladorProducto.php');
                     </select>
                     <div class="input-group-append">
                       <span class="input-group-text">
-                      <?php [$i] ?>
+                      <?php echo $id ?>
                       </span>
                     </div>
                   </div>
