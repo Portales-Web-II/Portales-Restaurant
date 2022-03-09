@@ -19,6 +19,13 @@ function listarIdT(){
      return $modeloProducto->getIdTipoP();
 
 }
+
+function listarTTp(){
+    require_once('../modelos/modeloProducto.php');
+     $modeloProducto = new Producto();
+     return $modeloProducto->getTTp();
+
+}
 function listar(){
     require_once('../modelos/modeloProducto.php');
      $modeloProducto = new Producto();
