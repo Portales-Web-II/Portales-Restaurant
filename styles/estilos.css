@@ -186,3 +186,51 @@ a {
     height: 100px;
     width: 100px;
 } */
+
+/*Estilos de Inventario*/
+.activo {
+    color: var(--white-color);
+    background-color: rgba(42, 56, 65, 0.521)
+}
+
+.formSt {
+    border: 0.5px solid #000000;
+    border-radius: 25px;
+    padding-top: 20px;
+    margin: 10px 10px 10px 10px;
+}
+.formTp {
+    border: 0.5px solid #000000;
+    border-radius: 25px;
+    padding-top: 20px;
+    margin: 10px 10px 10px 10px;
+}
+
+.btnGuardar {
+    padding: 10px 30px;
+    margin-bottom: 20px;
+}
+
+.grupoF {
+    margin-top: 10px;
+}
+
+.tituloF {
+    margin-top: 25px;
+    padding: 10px;
+}
+
+.formP {
+    border: 0.5px solid #000000;
+    border-radius: 25px;
+    padding-top: 20px;
+    margin: 10px 10px 10px 10px;
+}
+
+.izP{
+    margin: 20px 30px 20px 30px;
+}
+
+.derP{
+    margin: 20px 30px 20px 30px;
+}
