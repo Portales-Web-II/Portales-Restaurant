@@ -38,6 +38,10 @@
 
     <div class="container-fluid bg-light">
         <div class="row row-cols-1 row-cols-md-2 g-4 justify-content-md-center">
+            <?php
+            $lista = listar($TipoProductos, $SubTipoProductos);
+            for ($i = 0; $i < count($lista); $i++) {
+            ?>
             <div class="col">
                 <div class="card h-100">
                     <img src="../src/imgs/desayuno_saludable_1.jpeg" class="card-img-top" alt="...">
@@ -47,11 +51,14 @@
                     </div>
 
                     <div class="d-grid gap-2">
-                        <a href="#" class="btn btn-warning" onClick="<?php $TipoProductos = "comida";  $SubTipoProductos = "desayunos"; ?>">Ver</a>
+                        <a href="#" class="btn btn-warning">Ver</a>
                     </div>
 
                 </div>
             </div>
+            <?php
+            };
+            ?>
         </div>
 
 
@@ -62,18 +69,4 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
-<?php
-
-function write_to_console($data) {
- $console = $data;
- if (is_array($console))
- $console = implode(',', $console);
-
- echo "<script>console.log('Console: " . $console . "' );</script>";
-}
-
-write_to_console($TipoProductos);
-write_to_console($SubTipoProductos);
-
-?>
 </html>
