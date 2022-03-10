@@ -20,7 +20,7 @@ include('../controladores/controladorCombo.php');
     <header class="header" id="header">
         <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div>
         <div>
-            <h4>Productos</h4>
+            <h4>Menu Combos</h4>
         </div>
         <div class="header_img"> <img src="../src/imgs/logoportalesw-preview.png"> </div>
     </header>
@@ -31,8 +31,8 @@ include('../controladores/controladorCombo.php');
                 <div class="nav_list">
                     <a href="../index.php" class="nav_link"> <i class='bx bx-grid-alt nav_icon'></i> <span class="nav_name">Inicio</span> </a>
                     <a href="./vistaMenu.php" class="nav_link"> <i class='bx bx-shopping-bag nav_icon'></i> <span class="nav_name">Ventas</span> </a>
-                    <a href="#" class="nav_link"> <i class='bx bx-user nav_icon'></i> <span class="nav_name">Usuarios</span> </a>
-                    <a href="#" class="nav_link"> <i class='bx bx-group nav_icon'></i> <span class="nav_name">Empleado</span> </a>
+                    <a href="./vistaUsuario.php" class="nav_link"> <i class='bx bx-user nav_icon'></i> <span class="nav_name">Usuarios</span> </a>
+                    <a href="./vistaPersona.php" class="nav_link"> <i class='bx bx-group nav_icon'></i> <span class="nav_name">Empleado</span> </a>
                     <a href="./vistaProductos.php" class="nav_link active"> <i class='bx bx-cabinet nav_icon'></i> <span class="nav_name">Inventario</span> </a>
                 </div>
             </div> <a href="#" class="nav_link"> <i class='bx bx-log-out nav_icon'></i> <span class="nav_name">SignOut</span> </a>
@@ -53,27 +53,8 @@ include('../controladores/controladorCombo.php');
                             <h5 class="card-title text-capitalize"><?php echo $lista[$i]["nombre"]; ?></h5>
                             <p class="card-text"><?php echo $lista[$i]["detalle"]; ?></p>
                             <ul class="list-group list-group-flush">
-                                <li class="list-group-item d-flex justify-content-between align-items-start">
-                                    <div class="ms-2 me-auto">
-                                        <div class="fw-bold">Subheading</div>
-                                        Content for list item
-                                    </div>
-                                    <span class="badge bg-primary rounded-pill">14</span>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-start">
-                                    <div class="ms-2 me-auto">
-                                        <div class="fw-bold">Subheading</div>
-                                        Content for list item
-                                    </div>
-                                    <span class="badge bg-primary rounded-pill">14</span>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-start">
-                                    <div class="ms-2 me-auto">
-                                        <div class="fw-bold">Subheading</div>
-                                        Content for list item
-                                    </div>
-                                    <span class="badge bg-primary rounded-pill">14</span>
-                                </li>
+                                <li class="list-group-item text-capitalize">Para <?php echo $lista[$i]["categoria"]; ?></li>
+                                <li class="list-group-item fw-bolder"> Lps. <?php echo $lista[$i]["precio"]; ?></li>
                             </ul>
                             <a href="#" class="btn btn-warning">Agregar al carrito</a>
                         </div>

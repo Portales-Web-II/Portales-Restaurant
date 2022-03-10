@@ -19,7 +19,7 @@ require_once('../controladores/controladorProducto.php')
     <header class="header" id="header">
         <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div>
         <div>
-            <h4>Productos</h4>
+            <h4>Categoria Menus</h4>
         </div>
         <div class="header_img"> <img src="../src/imgs/logoportalesw-preview.png"> </div>
     </header>
