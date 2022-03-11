@@ -18,14 +18,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Registro de Usuario</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Poppins:400,800,900" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="../styles/estilosU.css">
     
 </head>
-<body class="img js-fullheight" style="background-image: url(../src/imgs/Combos.jpg);">
-        <form action="">
+<body class="img js-fullheight" style="background-image: url(../src/imgs/food.jpg);">
+        <center>
+        <form action="../indexLogin.php", method="$_POST">
             <div class="form">
                 <h1>Crea tu Cuenta</h1>
                 <div class="grupo">
@@ -73,6 +73,8 @@
 
             </div>
         </form>
+        </center>
+        
 
     <script src="../js/jquery.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
