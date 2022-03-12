@@ -1,13 +1,23 @@
 
 <?php
 
-    require '../configuracion/db.php';
+    // require '../configuracion/db.php';
 
-    if(!empty($_POST['nomUsuario']) && !empty(['correo']) && !empty(['password']) && !empty(['confirmPasswd'])){
+    // $messaje='';
 
-        
+    // if(!empty($_POST['nomUsuario']) && !empty(['correo']) && !empty(['password']) && !empty(['confirmPasswd'])){
 
-    }
+    //     $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
+    //     $sql = "INSERT INTO usuario (nombreUsuario, correo, contrasena, select max(idPersona) AS idPersona FROM persona) VALUES (:nomUsuario, :correo, $password)";
+    //     $stmt = $conexion->prepare($sql);        
+
+    //     if ($stmt->execute()) {
+    //         $messaje = 'Se registró exitosamente el usuario';
+    //     }
+    //     else{
+    //         $messaje = 'Error al reggistrar el usuario'; 
+    //     }
+    // }
 
 ?>
 
@@ -16,7 +26,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta http-equiv="X-UA-Compatible">
     <title>Registro de Usuario</title>
     <link href="https://fonts.googleapis.com/css?family=Poppins:400,800,900" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -25,7 +35,10 @@
 </head>
 <body class="img js-fullheight" style="background-image: url(../src/imgs/food.jpg);">
         <center>
-        <form action="../indexLogin.php", method="$_POST">
+            <div style="padding-top: 20px;">
+
+            </div>
+        <form action="../index.php", method="$_POST">
             <div class="form">
                 <h1>Crea tu Cuenta</h1>
                 <div class="grupo">
