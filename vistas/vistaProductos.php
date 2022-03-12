@@ -51,11 +51,14 @@ require_once('../controladores/controladorProducto.php');
             </div>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="../vistaCombo.php" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Combos
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Combo
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" href="#">Productos combo</a>
+              <a class="dropdown-item" href="../vistas/vistaCombo.php">Combos</a>
+            </div>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" href="../vistas/vistaProductosCombo.php">Productos combo</a>
             </div>
           </li>
         </ul>
@@ -79,7 +82,7 @@ require_once('../controladores/controladorProducto.php');
               <th scope="col">Estado</th>
               <th scope="col">Tipo</th>
               <th scope="col">Subtipo</th>
-              <th scope="col">Opciones</th>
+              <th scope="col">Acciones</th>
             </tr>
           </thead>
           <tbody>
@@ -141,7 +144,7 @@ require_once('../controladores/controladorProducto.php');
       </div>
 
       <div class="d-flex justify-content-center formP">
-        <form>
+        <form class="was-validated">
           <div class="tituloF">
             <h5>
               Producto
@@ -164,9 +167,11 @@ require_once('../controladores/controladorProducto.php');
                   </div>
 
                   <div class="form-group">
-
-                    <label for="img">Imagen</label>
-                    <input type="email" class="form-control" id="img" placeholder="Escriba un precio">
+                  <div class="mb-3">
+                    <label for="precioP">Imagen</label>
+                    <input type="file" class="form-control" aria-label="file example" required>
+                    <div class="invalid-feedback">Example invalid form file feedback</div>
+                  </div>
                   </div>
                 </div>
 
@@ -182,7 +187,6 @@ require_once('../controladores/controladorProducto.php');
                     <input type="text" class="form-control" id="EstadoP" placeholder="Escriba una descripción">
                   </div>
 
-
                   <div class="input-group mb-3">
                     <div class="input-group-prepend">
 
@@ -196,15 +200,15 @@ require_once('../controladores/controladorProducto.php');
                       for ($i = 0; $i < count($listaId); $i++) {
                       ?>
                         <option value="<?php $id++ ?>"><?php
-                                echo $listaId[$i]["idTipoProducto"];
-                                ?></option>
+                                                        echo $listaId[$i]["idTipoProducto"];
+                                                        ?></option>
                       <?php
                       }
                       ?>
                     </select>
                     <div class="input-group-append">
                       <span class="input-group-text">
-                      <?php echo $id ?>
+                        <?php echo $id ?>
                       </span>
                     </div>
                   </div>

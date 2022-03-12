@@ -38,7 +38,7 @@ class Producto
     {
 
         self::setNames();
-        $sql = "SELECT nombre FROM tipoproducto WHERE idTipoPrincipal is NULL";
+        $sql = "SELECT idTipoProducto, nombre FROM tipoproducto WHERE idTipoPrincipal is NULL";
         foreach ($this->db->query($sql) as $res) {
             $this->producto[] = $res;
         }

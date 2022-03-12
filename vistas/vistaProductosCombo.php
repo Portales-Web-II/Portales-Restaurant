@@ -1,5 +1,5 @@
 <?php
-require_once('../controladores/controladorCombo.php');
+require_once('../controladores/controladorProductosCombo.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -55,10 +55,10 @@ require_once('../controladores/controladorCombo.php');
                     </li>
                     <li class="nav-item dropdown activo">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Combos
+                            Productos combo
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="../vistas/vistaProductosCombo.php">Productos combo</a>
+                            <a class="dropdown-item" href="../vistas/vistaCombo.php">Combos</a>
                         </div>
                     </li>
                 </ul>
@@ -70,13 +70,8 @@ require_once('../controladores/controladorCombo.php');
                 <thead class="thead-dark">
                     <tr>
                         <th scope="col">Id</th>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Precio</th>
-                        <th scope="col">Imagen</th>
-                        <th scope="col">Detalle</th>
-                        <th scope="col">Estado</th>
-                        <th scope="col">Categoría</th>
-                        <th scope="col">ID</th>
+                        <th scope="col">Producto</th>
+                        <th scope="col">Cantidad</th>
                         <th scope="col">Acciones</th>
                     </tr>
                 </thead>
@@ -88,7 +83,7 @@ require_once('../controladores/controladorCombo.php');
                         <tr>
                             <td>
                                 <?php
-                                echo $lista[$i]["idCombo"];
+                                echo $lista[$i]["idProductosCombo"];
                                 ?>
                             </td>
                             <td>
@@ -98,32 +93,7 @@ require_once('../controladores/controladorCombo.php');
                             </td>
                             <td>
                                 <?php
-                                echo $lista[$i]["precio"];
-                                ?>
-                            </td>
-                            <td>
-                                <?php
-                                echo $lista[$i]["imagen"];
-                                ?>
-                            </td>
-                            <td>
-                                <?php
-                                echo $lista[$i]["detalle"];
-                                ?>
-                            </td>
-                            <td>
-                                <?php
-                                echo $lista[$i]["estado"];
-                                ?>
-                            </td>
-                            <td>
-                                <?php
-                                echo $lista[$i]["categoria"];
-                                ?>
-                            </td>
-                            <td>
-                                <?php
-                                echo $lista[$i]["idProductosCombo"];
+                                echo $lista[$i]["cantidad"];
                                 ?>
                             </td>
                             <td>
@@ -142,56 +112,50 @@ require_once('../controladores/controladorCombo.php');
             <form>
                 <div class="tituloF">
                     <h5>
-                        Combo
+                        Productos combo
                     </h5>
 
                     <div class="container">
                         <div class="row">
                             <div class="col-sm izP">
 
-                                <div class="form-group grupoF">
+                                <div class="form-group">
+                                    <label for="inputEstado">Producto</label>
+                                    <div class="input-group mb-3">
+                                        <select class="custom-select" id="inputGroupSelect01">
 
-                                    <label for="nombreP">Nombre</label>
-                                    <input type="text" class="form-control" id="nombreP" placeholder="Escriba un nombre">
+                                            <option selected>Selecciona</option>
+                                        </select>
+                                        <div class="input-group-append">
+                                            <span class="input-group-text">Producto</span>
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <div class="form-group">
 
-                                    <label for="precioP">Precio</label>
-                                    <input type="text" class="form-control" id="precioP" placeholder="Escriba un precio">
+                                    <label for="cantidad">Cantidad</label>
+                                    <input type="text" class="form-control" id="cantidad" placeholder="Escriba un precio">
                                 </div>
 
                                 <div class="form-group">
+                                    <label for="inputEstado">Estado</label>
+                                    <div class="input-group mb-3">
+                                        <select class="custom-select" id="inputEstado">
 
-                                    <label for="img">Imagen</label>
-                                    <input type="email" class="form-control" id="img" placeholder="Escriba un precio">
+                                            <option selected>Activo</option>
+                                            <option selected>Inactivo</option>
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
-
-                            <div class="col-sm derP">
-
-                                <div class="form-group">
-                                    <label for="descrip">Detalle</label>
-                                    <input type="text" class="form-control" id="descrip" placeholder="Escriba una descripción">
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="EstadoP">Estado</label>
-                                    <input type="text" class="form-control" id="EstadoP" placeholder="Escriba una descripción">
-                                </div>
-
                                 <button type="submit" class="btn btn-warning btnGuardar">Guardar</button>
                             </div>
                         </div>
                     </div>
                 </div>
-
+            </form>
         </div>
-        </form>
     </div>
-
-    </div>
-
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

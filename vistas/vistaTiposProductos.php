@@ -12,6 +12,7 @@ require_once('../controladores/controladorProducto.php');
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
     <link rel="stylesheet" href="../styles/estilos.css">
     <script src="../js/menu.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>Portales Restaurant</title>
 </head>
 
@@ -52,10 +53,13 @@ require_once('../controladores/controladorProducto.php');
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Combos
+                            Combo
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="#">Productos combo</a>
+                            <a class="dropdown-item" href="../vistas/vistaCombo.php">Combos</a>
+                        </div>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="../vistas/vistaProductosCombo.php">Productos combo</a>
                         </div>
                     </li>
                 </ul>
@@ -63,59 +67,106 @@ require_once('../controladores/controladorProducto.php');
         </nav>
 
         <div class="container_productos">
-            <div class="titulo">
-                <h1 class="display-6">Tipos productos</h1>
-            </div>
-
-            <div class="container-table">
-                <table class="table">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th scope="col">Id</th>
-                            <th scope="col">Tipo</th>
-                            <th scope="col">Subtipo</th>
-                            <th scope="col">Opciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                        $lista = listarTp();
-                        for ($i = 0; $i < count($lista); $i++) {
-                        ?>
-                            <tr>
-                                <td>
-                                    <?php
-                                    echo $lista[$i]["idTipoProducto"];
-                                    ?>
-                                </td>
-
-                                <td>
-                                    <?php
-                                    echo $lista[$i]["tipo"];
-                                    ?>
-                                </td>
-
-                                <td>
-                                    <?php
-                                    echo $lista[$i]["subTipo"];
-                                    ?>
-                                </td>
-
-                                <td>
-                                    <button type="button" class="btn btn-outline-warning">Eliminar</button>
-                                    <button type="button" class="btn btn-outline-warning">Modificar</button>
-                                </td>
-                            </tr>
-                        <?php
-                        };
-                        ?>
-                    </tbody>
-                </table>
-            </div>
 
             <div class="container">
                 <div class="row">
+                    <div class="col">
+                        <div class="titulo">
+                            <h1 class="display-6">Tipos principales</h1>
+                        </div>
+                        <div class="container-table">
+                            <table class="table">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th scope="col">Id</th>
+                                        <th scope="col">Tipo</th>
+                                        <th scope="col">Opciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    $listaTp = listarTipoP();
+                                    for ($r = 0; $r < count($listaTp); $r++) {
+                                    ?>
+                                        <tr>
+                                            <td>
+                                                <?php
+                                                echo $listaTp[$r]["idTipoProducto"];
+                                                ?>
+                                            </td>
+
+                                            <td>
+                                                <?php
+                                                echo $listaTp[$r]["nombre"];
+                                                ?>
+                                            </td>
+
+                                            <td>
+                                                <button type="button" class="btn btn-outline-warning">Modificar</button>
+                                            </td>
+                                        </tr>
+                                    <?php
+                                    };
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="titulo">
+                            <h1 class="display-6">Subtipos</h1>
+                        </div>
+                        <div class="container-table">
+                            <table class="table">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th scope="col">Id</th>
+                                        <th scope="col">Tipo</th>
+                                        <th scope="col">Subtipo</th>
+                                        <th scope="col">Opciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    $lista = listarTp();
+                                    for ($i = 0; $i < count($lista); $i++) {
+                                    ?>
+                                        <tr>
+                                            <td>
+                                                <?php
+                                                echo $lista[$i]["idTipoProducto"];
+                                                ?>
+                                            </td>
+
+                                            <td>
+                                                <?php
+                                                echo $lista[$i]["tipo"];
+                                                ?>
+                                            </td>
+
+                                            <td>
+                                                <?php
+                                                echo $lista[$i]["subTipo"];
+                                                ?>
+                                            </td>
+
+                                            <td>
+                                                <button type="button" class="btn btn-outline-warning">Modificar</button>
+                                            </td>
+                                        </tr>
+                                    <?php
+                                    };
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
                     <div class="col-sm formTp">
+                        <ul class="msjForm">
+                            <li>Ingrese un nombre</li>
+                        </ul>
                         <form>
                             <div class="mx-auto tituloF" style="width: 200px;">
                                 <h5>
@@ -123,56 +174,59 @@ require_once('../controladores/controladorProducto.php');
                                 </h5>
                                 <div class="form-group grupoF">
                                     <label for="nombreSt">Nombre</label>
-                                    <input type="text" class="form-control" id="nombreSt" placeholder="Escriba un nombre">
-                                    <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+                                    <input type="text" name="nombreTp" class="form-control" id="nombreSt" placeholder="Escriba un nombre">
                                 </div>
-                                <button type="submit" class="btn btn-warning btnGuardar">Guardar</button>
+                                <button type="button" name="save_Tp" onclick="guardarTp();" class="btn btn-warning btnGuardar">Guardar</button>
                             </div>
                         </form>
                     </div>
-                    <div class="col-sm formSt">
-                        <form>
-                            <div class="mx-auto tituloF" style="width: 300px;">
-                                <h5>
-                                    Subtipos
-                                </h5>
-                                <div class="form-group grupoF">
-                                    <label for="nombreSt">Nombre</label>
-                                    <input type="text" class="form-control" id="nombreSt" placeholder="Escriba un nombre">
-                                </div>
-
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <label for="tipoP" class="input-group-text" for="inputGroupSelect01">Tipo Principal</label>
+                    <div class="col">
+                        <div class="col-sm formSt">
+                            <form>
+                                <div class="mx-auto tituloF" style="width: 250px;">
+                                    <h5>
+                                        Subtipos
+                                    </h5>
+                                    <div class="form-group grupoF">
+                                        <label for="nombreSt">Nombre</label>
+                                        <input type="text" class="form-control" id="nombreSt" placeholder="Escriba un nombre">
                                     </div>
-                                    <select class="custom-select" id="inputGroupSelect01">
-                                        <option selected>Selecciona</option>
-                                        <?php
-                                        $tiposP = listarTipoP();
-                                        for ($i = 0; $i < count($tiposP); $i++) {
-                                        ?>
-                                            <option><?php
-                                                    echo $tiposP[$i]["nombre"];
-                                                    ?></option>
-                                        <?php
-                                        }
-                                        ?>
-                                    </select>
+
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <label for="tipoP" class="input-group-text" for="inputGroupSelect01">Tipo Principal</label>
+                                        </div>
+                                        <select class="custom-select" id="inputGroupSelect01">
+                                            <option selected>Selecciona</option>
+                                            <?php
+                                            $tiposP = listarTipoP();
+                                            for ($i = 0; $i < count($tiposP); $i++) {
+                                            ?>
+                                                <option><?php
+                                                        echo $tiposP[$i]["nombre"];
+                                                        ?></option>
+                                            <?php
+                                            }
+                                            ?>
+                                        </select>
+                                    </div>
+                                    <button type="submit" class="btn btn-warning btnGuardar">Guardar</button>
                                 </div>
-                                <button type="submit" class="btn btn-warning btnGuardar">Guardar</button>
-                            </div>
-                        </form>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
-
         </div>
-
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
+<script type="text/javascript">
+    function guardarTp() {
+        var nombreTp = $('input[nombreTp=nombreTp]').val();
+    }
+</script>
 
 </html>
