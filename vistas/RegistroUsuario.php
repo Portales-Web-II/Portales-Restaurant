@@ -35,12 +35,13 @@
 </head>
 <body class="img js-fullheight" style="background-image: url(../src/imgs/food.jpg);">
         <center>
-            <div style="padding-top: 20px;">
-
-            </div>
-        <form action="../index.php", method="$_POST">
+        <form action="", method="$_POST">
             <div class="form">
                 <h1>Crea tu Cuenta</h1>
+                <div class="grupo">
+                    <input type="number" min="1", name="identidad" id="" required><span class="barra"></span>
+                    <label>Identidad</label>
+                </div>
                 <div class="grupo">
                     <input type="text" name="nomUsuario" id="" required><span class="barra"></span>
                     <label>Nombre</label>
