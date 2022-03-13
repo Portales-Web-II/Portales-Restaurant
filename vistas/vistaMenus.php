@@ -1,5 +1,24 @@
 <?php
-include('../controladores/controladorMenus.php');
+include('../controladores/controladorFiltroMenu.php');
+
+if(isset($_GET['TipoProducto']) && isset($_GET['SubTipoProducto'])){
+$Tipo = $_GET['TipoProducto'];
+$subTipo = $_GET['SubTipoProducto'];
+}
+
+
+function write_to_console($data) {
+    $console = $data;
+    if (is_array($console))
+    $console = implode(',', $console);
+   
+    echo "<script>console.log('Console: " . $console . "' );</script>";
+   }
+   
+   write_to_console($Tipo);
+   write_to_console($subTipo);
+
+
 ?>
 
 <!DOCTYPE html>
@@ -19,9 +38,6 @@ include('../controladores/controladorMenus.php');
 <body id="body-pd">
     <header class="header" id="header">
         <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div>
-        <div>
-            <h4>Menu Productos</h4>
-        </div>
         <div class="header_img"> <img src="../src/imgs/logoportalesw-preview.png"> </div>
     </header>
     <div class="l-navbar" id="nav-bar">
@@ -40,10 +56,13 @@ include('../controladores/controladorMenus.php');
     </div>
 
     <div class="container-fluid bg-light">
+        <div>
+            <h4>Menu Productos</h4>
+        </div>
         <!-- <div class="row g-4 justify-content-md-center"> -->
         <div class="row row-cols-1 row-cols-md-2 g-4 justify-content-md-center">
             <?php
-            $lista = listar("comida", "");
+            $lista = MenuMostrar($Tipo, $subTipo);
             for ($i = 0; $i < count($lista); $i++) {
             ?>
                 <div class="col">
@@ -57,7 +76,7 @@ include('../controladores/controladorMenus.php');
                                 <li class="list-group-item text-capitalize"><?php echo $lista[$i]["SubTipo"]; ?></li>
                                 <li class="list-group-item fw-bolder"> Lps. <?php echo $lista[$i]["precio"]; ?></li>
                             </ul>
-                            <a href="#" class="btn btn-warning">Agregar al carrito</a>
+                            <button type="button" class="btn btn-warning">Agregar al carrito</button>
                         </div>
                     </div>
                 </div>

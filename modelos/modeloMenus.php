@@ -26,10 +26,10 @@ class ProductosMenus{
         INNER JOIN tipoproducto as Tpp1 ON Tp1.idTipoProducto = Tpp1.idTipoPrincipal 
         where Tp1.idTipoProducto = Tp.idTipoPrincipal group by subTipo) as Tipo FROM producto AS P 
         INNER JOIN tipoproducto as Tp ON P.idTipoProducto = Tp.idTipoProducto
-        where Tp.nombre = '$SubTipoProductos' or
+        where P.estado = 'activo'  and (Tp.nombre = '$SubTipoProductos' and
          (SELECT Tp1.nombre as subTipo FROM tipoproducto AS Tp1 
         INNER JOIN tipoproducto as Tpp1 ON Tp1.idTipoProducto = Tpp1.idTipoPrincipal 
-        where Tp1.idTipoProducto = Tp.idTipoPrincipal group by subTipo) = '$TipoProductos';";
+        where Tp1.idTipoProducto = Tp.idTipoPrincipal group by subTipo) = '$TipoProductos');";
         foreach ($this->db->query($sql) as $res) {
             $this->Productos[] = $res;
         }

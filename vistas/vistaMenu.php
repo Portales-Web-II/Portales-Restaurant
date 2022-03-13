@@ -1,5 +1,5 @@
 <?php
-require_once('../controladores/controladorProducto.php')
+require('../controladores/controladorProducto.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,9 +18,6 @@ require_once('../controladores/controladorProducto.php')
 <body id="body-pd">
     <header class="header" id="header">
         <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div>
-        <div>
-            <h4>Categoria Menus</h4>
-        </div>
         <div class="header_img"> <img src="../src/imgs/logoportalesw-preview.png"> </div>
     </header>
     <div class="l-navbar" id="nav-bar">
@@ -39,10 +36,16 @@ require_once('../controladores/controladorProducto.php')
     </div>
 
     <div class="container-fluid bg-light">
+        <div>
+            <h4>Categoria Menus</h4>
+        </div>
         <div class="row row-cols-1 row-cols-md-2 g-4 justify-content-md-center">
             <?php
             $lista = listarTTp();
             for ($i = 0; $i < count($lista); $i++) {
+            $TipoProducto = $lista[$i]["tipo"];
+            $SubTipoProducto = $lista[$i]["subTipo"]; 
+
             ?>
                 <div class="col">
                     <div class="card h-100">
@@ -53,7 +56,7 @@ require_once('../controladores/controladorProducto.php')
                         </div>
 
                         <div class="d-grid gap-2">
-                            <a href="#" class="btn btn-warning">Ver</a>
+                            <button type="submit" class="btn btn-warning" onclick="location.href='./vistaMenus.php?TipoProducto=<?php echo $TipoProducto;?>&SubTipoProducto=<?php echo $SubTipoProducto; ?>'" >Ver</button>
                         </div>
 
                     </div>
@@ -70,13 +73,12 @@ require_once('../controladores/controladorProducto.php')
                     </div>
 
                     <div class="d-grid gap-2">
-                        <a href="#" class="btn btn-warning">Ver</a>
+                        <a href="./vistaMenuCombos.php" class="btn btn-warning">Ver</a>
                     </div>
 
                 </div>
             </div>
         </div>
-
 
     </div>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
