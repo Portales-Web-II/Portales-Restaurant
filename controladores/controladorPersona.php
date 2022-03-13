@@ -26,6 +26,7 @@ function guardar_personas(){
     $modeloPersonas = new Personas();
      
     $idPersona= !empty($_POST['idPersona']) ? $_POST['idPersona'] : null; 
+    $identidad= !empty($_POST['identidad']) ? $_POST['identidad'] : null; 
     $nombre= !empty($_POST['nombre']) ? $_POST['nombre'] : null; 
     $apellido= !empty($_POST['apellido']) ? $_POST['apellido'] : null; 
     $telefono= !empty($_POST['telefono']) ? $_POST['telefono'] : null; 
@@ -38,13 +39,13 @@ function guardar_personas(){
 	if($accion==1){
 			
             header('Content-Type: application/json');
-            echo json_encode( $modeloPersonas->setGuardarPersonas($nombre, $apellido, $telefono, $idCargo, $direccion, $estado)
+            echo json_encode( $modeloPersonas->setGuardarPersonas($identidad, $nombre, $apellido, $telefono, $idCargo, $direccion, $estado)
                     , JSON_PRETTY_PRINT);
 		
         }else if($accion==2){
             
             header('Content-Type: application/json');
-            echo json_encode( $modeloPersonas->setActualizarPersonas($idPersona, $nombre, $apellido, $telefono, $idCargo, $direccion, $estado)
+            echo json_encode( $modeloPersonas->setActualizarPersonas($idPersona, $identidad, $nombre, $apellido, $telefono, $idCargo, $direccion, $estado)
                     , JSON_PRETTY_PRINT);
         }else if($accion==3){
             

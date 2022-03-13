@@ -25,7 +25,7 @@ class Personas{
 
     public function getPersonas(){
         self::setNames();
-        $sql = "SELECT p.idPersona, p.nombre, p.apellido, p.telefono, p.idCargo, c.nombreCargo, p.direccion,
+        $sql = "SELECT p.idPersona, p.identidad, p.nombre, p.apellido, p.telefono, p.idCargo, c.nombreCargo, p.direccion,
             p.estado
             FROM persona p 
             join cargos c on c.idCargos = p.idCargo
@@ -48,12 +48,12 @@ class Personas{
         $this->db = null;
     }
 
-     public function setGuardarPersonas($nombre, $apellido, $telefono, $idCargo, $direccion, $estado) {
+     public function setGuardarPersonas($identidad, $nombre, $apellido, $telefono, $idCargo, $direccion, $estado) {
 
         self::setNames();
-         //$sql = "INSERT INTO producto (nombre, precio, idTipoProducto) ('$nombre', '$precio', '$idTipoProducto')";
-        $sql = "INSERT INTO persona( nombre, apellido, telefono, idCargo, direccion, estado) 
-            VALUES ('$nombre','$apellido', '$telefono', '$idCargo', '$direccion', '$estado' )";
+         //$sql = "INSERT INTO producto (identidad, nombre, precio, idTipoProducto) ('$nombre', '$precio', '$idTipoProducto')";
+        $sql = "INSERT INTO persona(identidad, nombre, apellido, telefono, idCargo, direccion, estado) 
+            VALUES ('$identidad','$nombre','$apellido', '$telefono', '$idCargo', '$direccion', '$estado' )";
         $result = $this->db->query($sql);
          
         
@@ -67,7 +67,7 @@ class Personas{
             }
 
             $sql_personas = "select * from (
-            SELECT p.idPersona, p.nombre, p.apellido, p.telefono, p.idCargo, c.nombreCargo, p.direccion, p.estado
+            SELECT p.idPersona, p.identidad, p.nombre, p.apellido, p.telefono, p.idCargo, c.nombreCargo, p.direccion, p.estado
             FROM persona p 
             join cargos c on c.idCargos = p.idCargo            
             )x
@@ -84,16 +84,16 @@ class Personas{
          }
     }
 
-    public function setActualizarPersonas($idPersona, $nombre, $apellido, $telefono, $idCargo, $direccion, $estado) {
+    public function setActualizarPersonas($idPersona, $identidad, $nombre, $apellido, $telefono, $idCargo, $direccion, $estado) {
 
          self::setNames();
-         $sql = "UPDATE persona SET nombre='$nombre',apellido='$apellido',telefono='$telefono',idCargo='$idCargo',direccion='$direccion', estado='$estado'
+         $sql = "UPDATE persona SET identidad='$identidad', nombre='$nombre', apellido='$apellido',telefono='$telefono',idCargo='$idCargo',direccion='$direccion', estado='$estado'
             WHERE idPersona = '$idPersona' ";
          $result = $this->db->query($sql);                 
 
          if ($result) {
             $sql_personas = "select * from (
-            SELECT p.idPersona, p.nombre, p.apellido, p.telefono, p.idCargo, c.nombreCargo, p.direccion, p.estado
+            SELECT p.idPersona, p.identidad, p.nombre, p.apellido, p.telefono, p.idCargo, c.nombreCargo, p.direccion, p.estado
             FROM persona p 
             join cargos c on c.idCargos = p.idCargo            
             )x
