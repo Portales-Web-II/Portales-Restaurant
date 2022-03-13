@@ -58,6 +58,19 @@ class Producto
         $this->db = null;
     }
 
+    public function getTTp()
+    {
+
+        self::setNames();
+        $sql = "SELECT Tp.nombre as tipo, Tpp.nombre as subTipo FROM tipoproducto AS Tp
+        INNER JOIN tipoproducto as Tpp ON Tp.idTipoProducto = Tpp.idTipoPrincipal;";
+        foreach ($this->db->query($sql) as $res) {
+            $this->producto[] = $res;
+        }
+        return $this->producto;
+        $this->db = null;
+    }
+
     public function getProducto()
     {
         self::setNames();

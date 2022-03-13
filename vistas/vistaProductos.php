@@ -27,7 +27,7 @@ require_once('../controladores/controladorProducto.php');
           <a href="../index.php" class="nav_link"> <i class='bx bx-grid-alt nav_icon'></i> <span class="nav_name">Inicio</span> </a>
           <a href="#" class="nav_link"> <i class='bx bx-shopping-bag nav_icon'></i> <span class="nav_name">Ventas</span> </a>
           <a href="#" class="nav_link"> <i class='bx bx-user nav_icon'></i> <span class="nav_name">Usuarios</span> </a>
-          <a href="#" class="nav_link"> <i class='bx bx-group nav_icon'></i> <span class="nav_name">Empleado</span> </a>
+          <a href="../vistas/vistaPersona.php" class="nav_link"> <i class='bx bx-group nav_icon'></i> <span class="nav_name">Empleado</span> </a>
           <a href="#" class="nav_link active"> <i class='bx bx-cabinet nav_icon'></i> <span class="nav_name">Inventario</span> </a>
         </div>
       </div> <a href="#" class="nav_link"> <i class='bx bx-log-out nav_icon'></i> <span class="nav_name">SignOut</span> </a>
@@ -51,7 +51,7 @@ require_once('../controladores/controladorProducto.php');
             </div>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" href="../vistaCombo.php" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Combos
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -129,7 +129,7 @@ require_once('../controladores/controladorProducto.php');
                   ?>
                 </td>
                 <td>
-                  <button type="button" class="btn btn-outline-warning">Eliminar</button>
+                  <button type="button" class="btn btn-outline-danger">Eliminar</button>
                   <button type="button" class="btn btn-outline-warning">Modificar</button>
                 </td>
               </tr>
@@ -195,7 +195,7 @@ require_once('../controladores/controladorProducto.php');
                       $listaId = listarIdT();
                       for ($i = 0; $i < count($listaId); $i++) {
                       ?>
-                        <option value="<?php [$i] ?>"><?php
+                        <option value="<?php $id++ ?>"><?php
                                 echo $listaId[$i]["idTipoProducto"];
                                 ?></option>
                       <?php
@@ -204,7 +204,7 @@ require_once('../controladores/controladorProducto.php');
                     </select>
                     <div class="input-group-append">
                       <span class="input-group-text">
-                      <?php [$i] ?>
+                      <?php echo $id ?>
                       </span>
                     </div>
                   </div>

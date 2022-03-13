@@ -1,21 +1,26 @@
 <?php
-include('../controladores/controladorMenus.php');
-$TipoProductos = "bebida";
-?>
-<?php
+include('../controladores/controladorFiltroMenu.php');
 
-function write_to_console($data) {
- $console = $data;
- if (is_array($console))
- $console = implode(',', $console);
-
- echo "<script>console.log('Console: " . $console . "' );</script>";
+if(isset($_GET['TipoProducto']) && isset($_GET['SubTipoProducto'])){
+$Tipo = $_GET['TipoProducto'];
+$subTipo = $_GET['SubTipoProducto'];
 }
 
-write_to_console($TipoProductos);
-write_to_console($SubTipoProductos);
+
+function write_to_console($data) {
+    $console = $data;
+    if (is_array($console))
+    $console = implode(',', $console);
+   
+    echo "<script>console.log('Console: " . $console . "' );</script>";
+   }
+   
+   write_to_console($Tipo);
+   write_to_console($subTipo);
+
 
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -33,9 +38,6 @@ write_to_console($SubTipoProductos);
 <body id="body-pd">
     <header class="header" id="header">
         <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div>
-        <div>
-            <h4>Productos</h4>
-        </div>
         <div class="header_img"> <img src="../src/imgs/logoportalesw-preview.png"> </div>
     </header>
     <div class="l-navbar" id="nav-bar">
@@ -45,8 +47,8 @@ write_to_console($SubTipoProductos);
                 <div class="nav_list">
                     <a href="../index.php" class="nav_link"> <i class='bx bx-grid-alt nav_icon'></i> <span class="nav_name">Inicio</span> </a>
                     <a href="./vistaMenu.php" class="nav_link"> <i class='bx bx-shopping-bag nav_icon'></i> <span class="nav_name">Ventas</span> </a>
-                    <a href="#" class="nav_link"> <i class='bx bx-user nav_icon'></i> <span class="nav_name">Usuarios</span> </a>
-                    <a href="#" class="nav_link"> <i class='bx bx-group nav_icon'></i> <span class="nav_name">Empleado</span> </a>
+                    <a href="./vistaUsuario.php" class="nav_link"> <i class='bx bx-user nav_icon'></i> <span class="nav_name">Usuarios</span> </a>
+                    <a href="./vistaPersona.php" class="nav_link"> <i class='bx bx-group nav_icon'></i> <span class="nav_name">Empleado</span> </a>
                     <a href="./vistaProductos.php" class="nav_link active"> <i class='bx bx-cabinet nav_icon'></i> <span class="nav_name">Inventario</span> </a>
                 </div>
             </div> <a href="#" class="nav_link"> <i class='bx bx-log-out nav_icon'></i> <span class="nav_name">SignOut</span> </a>
@@ -54,13 +56,17 @@ write_to_console($SubTipoProductos);
     </div>
 
     <div class="container-fluid bg-light">
-        <div class="row g-4 justify-content-md-center">
+        <div>
+            <h4>Menu Productos</h4>
+        </div>
+        <!-- <div class="row g-4 justify-content-md-center"> -->
+        <div class="row row-cols-1 row-cols-md-2 g-4 justify-content-md-center">
             <?php
-            $lista = listar($TipoProductos, $SubTipoProductos);
+            $lista = MenuMostrar($Tipo, $subTipo);
             for ($i = 0; $i < count($lista); $i++) {
             ?>
-                <div class="col-lg-3 col-md-6 col-sm-9">
-                    <div class="card h-100 text-center" style="width: 18rem;">
+                <div class="col">
+                    <div class="card h-100 text-center">
                         <img src="../src/imgs/Almuerzos.jpg" class="card-img-top" alt="...">
                         <div class="card-body">
                             <h5 class="card-title text-capitalize"><?php echo $lista[$i]["nombre"]; ?></h5>
@@ -70,7 +76,7 @@ write_to_console($SubTipoProductos);
                                 <li class="list-group-item text-capitalize"><?php echo $lista[$i]["SubTipo"]; ?></li>
                                 <li class="list-group-item fw-bolder"> Lps. <?php echo $lista[$i]["precio"]; ?></li>
                             </ul>
-                            <a href="#" class="btn btn-warning">Agregar al carrito</a>
+                            <button type="button" class="btn btn-warning">Agregar al carrito</button>
                         </div>
                     </div>
                 </div>

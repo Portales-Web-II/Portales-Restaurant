@@ -1,6 +1,7 @@
 <?php
-require('../controladores/controladorProducto.php');
+include('../controladores/controladorCombo.php');
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,6 +19,9 @@ require('../controladores/controladorProducto.php');
 <body id="body-pd">
     <header class="header" id="header">
         <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div>
+        <div>
+            <h4>Menu Combos</h4>
+        </div>
         <div class="header_img"> <img src="../src/imgs/logoportalesw-preview.png"> </div>
     </header>
     <div class="l-navbar" id="nav-bar">
@@ -36,50 +40,30 @@ require('../controladores/controladorProducto.php');
     </div>
 
     <div class="container-fluid bg-light">
-        <div>
-            <h4>Categoria Menus</h4>
-        </div>
+        <!-- <div class="row g-4 justify-content-md-center"> -->
         <div class="row row-cols-1 row-cols-md-2 g-4 justify-content-md-center">
             <?php
-            $lista = listarTTp();
+            $lista = listarActivos();
             for ($i = 0; $i < count($lista); $i++) {
-            $TipoProducto = $lista[$i]["tipo"];
-            $SubTipoProducto = $lista[$i]["subTipo"]; 
-
             ?>
                 <div class="col">
-                    <div class="card h-100">
-                        <img src="../src/imgs/desayuno_saludable_1.jpeg" class="card-img-top" alt="...">
+                    <div class="card h-100 text-center">
+                        <img src="../src/imgs/Almuerzos.jpg" class="card-img-top" alt="...">
                         <div class="card-body">
-                            <p class="card-text text-capitalize fs-5"><?php echo $lista[$i]["tipo"]; ?></p>
-                            <h5 class="card-title text-capitalize fs-1"><?php echo $lista[$i]["subTipo"]; ?></h5>
+                            <h5 class="card-title text-capitalize"><?php echo $lista[$i]["nombre"]; ?></h5>
+                            <p class="card-text"><?php echo $lista[$i]["detalle"]; ?></p>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item text-capitalize">Para <?php echo $lista[$i]["categoria"]; ?></li>
+                                <li class="list-group-item fw-bolder"> Lps. <?php echo $lista[$i]["precio"]; ?></li>
+                            </ul>
+                            <a href="#" class="btn btn-warning">Agregar al carrito</a>
                         </div>
-
-                        <div class="d-grid gap-2">
-                            <button type="submit" class="btn btn-warning" onclick="location.href='./vistaMenus.php?TipoProducto=<?php echo $TipoProducto;?>&SubTipoProducto=<?php echo $SubTipoProducto; ?>'" >Ver</button>
-                        </div>
-
                     </div>
                 </div>
             <?php
             };
             ?>
-            <div class="col">
-                <div class="card h-100">
-                    <img src="../src/imgs/desayuno_saludable_1.jpeg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <p class="card-text fs-5">Combos de comidas y bebidas</p>
-                        <h5 class="card-title fs-1">Combos</h5>
-                    </div>
-
-                    <div class="d-grid gap-2">
-                        <a href="./vistaMenuCombos.php" class="btn btn-warning">Ver</a>
-                    </div>
-
-                </div>
-            </div>
         </div>
-
     </div>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

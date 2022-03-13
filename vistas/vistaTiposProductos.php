@@ -132,7 +132,7 @@ require_once('../controladores/controladorProducto.php');
                     </div>
                     <div class="col-sm formSt">
                         <form>
-                            <div class="mx-auto tituloF" style="width: 200px;">
+                            <div class="mx-auto tituloF" style="width: 300px;">
                                 <h5>
                                     Subtipos
                                 </h5>
