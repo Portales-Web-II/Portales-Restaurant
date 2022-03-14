@@ -1,5 +1,5 @@
 <?php
-require_once('../controladores/controladorCombo.php');
+require_once('../controladores/controladorProductosCombo.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,6 +12,7 @@ require_once('../controladores/controladorCombo.php');
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
     <link rel="stylesheet" href="../styles/estilos.css">
     <script src="../js/menu.js"></script>
+
     <script src="../js/validaciones.js"></script>
     <title>Portales Restaurant</title>
 </head>
@@ -56,10 +57,10 @@ require_once('../controladores/controladorCombo.php');
                     </li>
                     <li class="nav-item dropdown activo">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Combos
+                            Productos combo
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="../vistas/vistaProductosCombo.php">Productos combo</a>
+                            <a class="dropdown-item" href="../vistas/vistaCombo.php">Combos</a>
                         </div>
                     </li>
                 </ul>
@@ -71,13 +72,9 @@ require_once('../controladores/controladorCombo.php');
                 <thead class="thead-dark">
                     <tr>
                         <th scope="col">Id</th>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Precio</th>
-                        <th scope="col">Imagen</th>
-                        <th scope="col">Detalle</th>
+                        <th scope="col">Producto</th>
+                        <th scope="col">Cantidad</th>
                         <th scope="col">Estado</th>
-                        <th scope="col">Categoría</th>
-                        <th scope="col">ID</th>
                         <th scope="col">Acciones</th>
                     </tr>
                 </thead>
@@ -89,7 +86,7 @@ require_once('../controladores/controladorCombo.php');
                         <tr>
                             <td>
                                 <?php
-                                echo $lista[$i]["idCombo"];
+                                echo $lista[$i]["idProductosCombo"];
                                 ?>
                             </td>
                             <td>
@@ -99,32 +96,12 @@ require_once('../controladores/controladorCombo.php');
                             </td>
                             <td>
                                 <?php
-                                echo $lista[$i]["precio"];
-                                ?>
-                            </td>
-                            <td>
-                                <?php
-                                echo $lista[$i]["imagen"];
-                                ?>
-                            </td>
-                            <td>
-                                <?php
-                                echo $lista[$i]["detalle"];
+                                echo $lista[$i]["cantidad"];
                                 ?>
                             </td>
                             <td>
                                 <?php
                                 echo $lista[$i]["estado"];
-                                ?>
-                            </td>
-                            <td>
-                                <?php
-                                echo $lista[$i]["categoria"];
-                                ?>
-                            </td>
-                            <td>
-                                <?php
-                                echo $lista[$i]["idProductosCombo"];
                                 ?>
                             </td>
                             <td>
@@ -140,42 +117,44 @@ require_once('../controladores/controladorCombo.php');
         </div>
 
         <div class="d-flex justify-content-center formP">
-            <form action="" method="post" class="was-validated">
+            <form class="was-validated">
                 <div class="tituloF">
                     <h5>
-                        Combo
+                        Productos combo
                     </h5>
 
                     <div class="container">
                         <div class="row">
                             <div class="col-sm izP">
 
-                                <div class="form-group grupoF">
-
-                                    <label for="nombreP">Nombre</label>
-                                    <input type="text" class="form-control is-invalid" id="nombreP" placeholder="Escriba un nombre" onkeypress="return isNumericKey(event)" required>
-                                </div>
-
                                 <div class="form-group">
+                                    <label for="inputEstado">Producto</label>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-append">
+                                            <span class="input-group-text">Producto</span>
+                                        </div>
+                                        <select id="OpPro" class="form-select custom-select" required aria-label="select example">
 
-                                    <label for="precioP">Precio</label>
-                                    <input type="text" class="form-control is-invalid" id="precioP" placeholder="Escriba un precio" onkeypress="return isNumberKey(event)" required>
-                                </div>
+                                            <option value="">Selecciona</option>
+                                            <?php
+                                            $listaP = listarPro();
+                                            for ($i = 0; $i < count($listaP); $i++) {
+                                            ?>
+                                                <option value="<?php $ir++ ?>"><?php
+                                                                                echo $listaP[$i]["nombre"];
+                                                                                ?></option>
+                                            <?php
+                                            }
+                                            ?>
+                                        </select>
 
-                                <div class="form-group">
-                                    <div class="mb-3">
-                                        <label for="imgCombo">Imagen</label>
-                                        <input id="imgCombo" type="file" class="form-control" aria-label="file example" required>
-                                        <div class="invalid-feedback">Example invalid form file feedback</div>
                                     </div>
                                 </div>
-                            </div>
-
-                            <div class="col-sm derP">
 
                                 <div class="form-group">
-                                    <label for="detal">Detalle</label>
-                                    <textarea class="form-control is-invalid" id="detal" placeholder="Ingrese un detalle" onkeypress="return isNumericKey(event)" required></textarea>
+
+                                    <label for="cantidad">Cantidad</label>
+                                    <input type="text" class="form-control is-invalid" id="cantidad" placeholder="Escriba un precio" onkeypress="return isNumberKey(event)" required>
                                 </div>
 
                                 <div class="input-group mb-3">
@@ -190,19 +169,14 @@ require_once('../controladores/controladorCombo.php');
                                         <option value="2">Inactivo</option>
                                     </select>
                                 </div>
-
                                 <button type="submit" class="btn btn-warning btnGuardar">Guardar</button>
                             </div>
                         </div>
                     </div>
                 </div>
-
+            </form>
         </div>
-        </form>
     </div>
-
-    </div>
-
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

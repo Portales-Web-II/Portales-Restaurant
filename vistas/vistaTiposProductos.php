@@ -12,6 +12,7 @@ require_once('../controladores/controladorProducto.php');
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
     <link rel="stylesheet" href="../styles/estilos.css">
     <script src="../js/menu.js"></script>
+    <script src="../js/validaciones.js"></script>
     <title>Portales Restaurant</title>
 </head>
 
@@ -52,10 +53,13 @@ require_once('../controladores/controladorProducto.php');
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Combos
+                            Combo
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="#">Productos combo</a>
+                            <a class="dropdown-item" href="../vistas/vistaCombo.php">Combos</a>
+                        </div>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="../vistas/vistaProductosCombo.php">Productos combo</a>
                         </div>
                     </li>
                 </ul>
@@ -63,116 +67,242 @@ require_once('../controladores/controladorProducto.php');
         </nav>
 
         <div class="container_productos">
-            <div class="titulo">
-                <h1 class="display-6">Tipos productos</h1>
-            </div>
-
-            <div class="container-table">
-                <table class="table">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th scope="col">Id</th>
-                            <th scope="col">Tipo</th>
-                            <th scope="col">Subtipo</th>
-                            <th scope="col">Opciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                        $lista = listarTp();
-                        for ($i = 0; $i < count($lista); $i++) {
-                        ?>
-                            <tr>
-                                <td>
-                                    <?php
-                                    echo $lista[$i]["idTipoProducto"];
-                                    ?>
-                                </td>
-
-                                <td>
-                                    <?php
-                                    echo $lista[$i]["tipo"];
-                                    ?>
-                                </td>
-
-                                <td>
-                                    <?php
-                                    echo $lista[$i]["subTipo"];
-                                    ?>
-                                </td>
-
-                                <td>
-                                    <button type="button" class="btn btn-outline-warning">Eliminar</button>
-                                    <button type="button" class="btn btn-outline-warning">Modificar</button>
-                                </td>
-                            </tr>
-                        <?php
-                        };
-                        ?>
-                    </tbody>
-                </table>
-            </div>
 
             <div class="container">
                 <div class="row">
+                    <div class="col">
+                        <div class="titulo">
+                            <h1 class="display-6">Tipos principales</h1>
+                        </div>
+                        <div class="container-table">
+                            <table class="table">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th scope="col">Id</th>
+                                        <th scope="col">Tipo</th>
+                                        <th scope="col">Opciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    $listaTp = listarTipoP();
+                                    for ($r = 0; $r < count($listaTp); $r++) {
+                                    ?>
+                                        <tr>
+                                            <td>
+                                                <?php
+                                                echo $listaTp[$r]['idTipoProducto'];
+                                                ?>
+                                            </td>
+
+                                            <td>
+                                                <?php
+                                                echo $listaTp[$r]['nombre'];
+                                                ?>
+                                            </td>
+
+                                            <td>
+                                                <button type="button" class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#modal_modificarTp" data-idTp="<?php $idTpA = $listaTp[$r]['idTipoProducto']; ?>">Modificar</button>
+                                            </td>
+                                        </tr>
+                                    <?php
+                                    };
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="titulo">
+                            <h1 class="display-6">Subtipos</h1>
+                        </div>
+                        <div class="container-table">
+                            <table class="table">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th scope="col">Id</th>
+                                        <th scope="col">Tipo</th>
+                                        <th scope="col">Subtipo</th>
+                                        <th scope="col">Opciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    $lista = listarTp();
+                                    for ($i = 0; $i < count($lista); $i++) {
+                                    ?>
+                                        <tr>
+                                            <td>
+                                                <?php
+                                                echo $lista[$i]["idTipoProducto"];
+                                                ?>
+                                            </td>
+
+                                            <td>
+                                                <?php
+                                                echo $lista[$i]["tipo"];
+                                                ?>
+                                            </td>
+
+                                            <td>
+                                                <?php
+                                                echo $lista[$i]["subTipo"];
+                                                ?>
+                                            </td>
+
+                                            <td>
+                                                <button type="button" class="btn btn-outline-warning">Modificar</button>
+                                            </td>
+                                        </tr>
+                                    <?php
+                                    };
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
                     <div class="col-sm formTp">
-                        <form>
-                            <div class="mx-auto tituloF" style="width: 200px;">
+                        <form action="" method="post" class="was-validated">
+                            <div class="mx-auto tituloF">
                                 <h5>
                                     Tipo Principal
                                 </h5>
                                 <div class="form-group grupoF">
-                                    <label for="nombreSt">Nombre</label>
-                                    <input type="text" class="form-control" id="nombreSt" placeholder="Escriba un nombre">
-                                    <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+                                    <label for="nombreTp" class="form-label">Nombre</label>
+                                    <input type="text" value="" class="form-control is-invalid" id="nombreTp" name="nombreTp" placeholder="Escriba un nombre" onkeypress="return isNumericKey(event)" required>
                                 </div>
-                                <button type="submit" class="btn btn-warning btnGuardar">Guardar</button>
+                                <button type="submit" name="save" id="btnGuardarTp" class="btn btn-warning btnGuardar" value="Save to database">Guardar</button>
                             </div>
                         </form>
                     </div>
                     <div class="col-sm formSt">
-                        <form>
-                            <div class="mx-auto tituloF" style="width: 300px;">
+                        <form action="" method="post" class="was-validated">
+                            <div class="mx-auto tituloF">
                                 <h5>
                                     Subtipos
                                 </h5>
                                 <div class="form-group grupoF">
-                                    <label for="nombreSt">Nombre</label>
-                                    <input type="text" class="form-control" id="nombreSt" placeholder="Escriba un nombre">
+                                    <label for="nombreSt" class="form-label">Nombre</label>
+                                    <input type="text" value="" class="form-control is-invalid" id="nombreSt" name="nombreSt" placeholder="Escriba un nombre" onkeypress="return isNumericKey(event)" required>
                                 </div>
 
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
-                                        <label for="tipoP" class="input-group-text" for="inputGroupSelect01">Tipo Principal</label>
+
+                                        <label for="OpTipoP" class="input-group-text" for="inputGroupSelect01">Tipo principal</label>
                                     </div>
-                                    <select class="custom-select" id="inputGroupSelect01">
-                                        <option selected>Selecciona</option>
+                                    <select name="OpTipoP" id="OpTipoP" class="form-select custom-select" required aria-label="select example">
+
+                                        <option value="">Selecciona</option>
                                         <?php
                                         $tiposP = listarTipoP();
                                         for ($i = 0; $i < count($tiposP); $i++) {
                                         ?>
-                                            <option><?php
-                                                    echo $tiposP[$i]["nombre"];
-                                                    ?></option>
+                                            <option value="<?php echo $tiposP[$i]["idTipoProducto"]; ?>"><?php
+                                                                                                            echo $tiposP[$i]["nombre"];
+                                                                                                            ?></option>
                                         <?php
                                         }
                                         ?>
                                     </select>
                                 </div>
-                                <button type="submit" class="btn btn-warning btnGuardar">Guardar</button>
+                                <button type="button" name="save" id="btnGuardarSt" class="btn btn-warning btnGuardar" value="Save to database">Guardar</button>
                             </div>
+                            <?php
+                            include('../modals/modalGuardar.php');
+                            ?>
                         </form>
                     </div>
                 </div>
             </div>
-
         </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 
 </html>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/cesiumjs/1.78/Build/Cesium/Cesium.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#btnGuardarTp').on('click', function() {
+            var nombre = $('#nombreTp').val();
+            var op = 1;
+            if (nombre != "") {
+                $.ajax({
+                    type: "POST",
+                    url: "../paginas/saveTp.php",
+                    data: {
+                        nombre: nombre,
+                        op: op
+                    },
+                    cache: false,
+                    dataType: 'json',
+                    success: function() {
+                        alert("Registro guardado");
+                    }
+                })
+            } else {
+                alert("Ingrese un nombre");
+            }
+        })
+    });
+    $(document).ready(function() {
+        $('#btnModificarTp').on('click', function() {
+            var idTipoProducto = $(<?php echo $idTpA; ?>);
+            var nombre = $('#nombreTpA').val();
+            var op = 2;
+            if (nombre != "") {
+                $.ajax({
+                    type: "POST",
+                    url: "../paginas/saveTp.php",
+                    data: {
+                        idTipoProducto: idTipoProducto,
+                        nombre: nombre,
+                        op: op
+                    },
+                    cache: false,
+                    dataType: 'json',
+                    success: function() {
+                        alert("Registro actualizado");
+                    }
+                })
+            } else {
+                alert("Ingrese un nombre");
+            }
+        })
+    });
+
+    $(document).ready(function() {
+        $('#btnGuardarSt').on('click', function() {
+            $('select#OpTipoP').on('change', function(idTipoPrincipal) {
+                var idTipoPrincipal = $(this).val();
+            });
+            var nombre = $('#nombreSt').val();
+            var op = 1;
+            if (nombre != "" || idTipoPrincipal != "") {
+                $.ajax({
+                    type: "POST",
+                    url: "../paginas/saveSt.php",
+                    data: {
+                        nombre: nombre,
+                        idTipoPrincipal: idTipoPrincipal,
+                        op: op
+                    },
+                    cache: false,
+                    dataType: 'json',
+                    success: function() {
+                        alert("Registro guardado");
+                    }
+                })
+            } else {
+                alert("Ingrese un nombre y tipo");
+            }
+        })
+    });
+</script>

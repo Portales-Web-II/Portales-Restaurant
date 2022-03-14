@@ -12,6 +12,7 @@ require_once('../controladores/controladorProducto.php');
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
   <link rel="stylesheet" href="../styles/estilos.css">
   <script src="../js/menu.js"></script>
+  <script src="../js/validaciones.js"></script>
   <title>Portales Restaurant</title>
 </head>
 
@@ -51,11 +52,14 @@ require_once('../controladores/controladorProducto.php');
             </div>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="../vistaCombo.php" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Combos
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Combo
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" href="#">Productos combo</a>
+              <a class="dropdown-item" href="../vistas/vistaCombo.php">Combos</a>
+            </div>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" href="../vistas/vistaProductosCombo.php">Productos combo</a>
             </div>
           </li>
         </ul>
@@ -79,7 +83,7 @@ require_once('../controladores/controladorProducto.php');
               <th scope="col">Estado</th>
               <th scope="col">Tipo</th>
               <th scope="col">Subtipo</th>
-              <th scope="col">Opciones</th>
+              <th scope="col">Acciones</th>
             </tr>
           </thead>
           <tbody>
@@ -141,7 +145,8 @@ require_once('../controladores/controladorProducto.php');
       </div>
 
       <div class="d-flex justify-content-center formP">
-        <form>
+        <form action="" method="post" enctype="multipart/form-data" class="was-validated">
+
           <div class="tituloF">
             <h5>
               Producto
@@ -153,70 +158,105 @@ require_once('../controladores/controladorProducto.php');
 
                   <div class="form-group grupoF">
 
-                    <label for="nombreP">Nombre</label>
-                    <input type="text" class="form-control" id="nombreP" placeholder="Escriba un nombre">
+                    <label for="nombreP" class="form-label">Nombre</label>
+                    <input type="text" class="form-control is-invalid" id="nombreP" name="nombreP" placeholder="Escriba un nombre" onkeypress="return isNumericKey(event)" required>
                   </div>
 
                   <div class="form-group">
 
-                    <label for="precioP">Precio</label>
-                    <input type="text" class="form-control" id="precioP" placeholder="Escriba un precio">
+                    <label for="nombreP" class="form-label">Precio</label>
+                    <input type="text" class="form-control is-invalid" id="precioP" name="precioP" placeholder="Escriba un precio" onkeypress="return isNumberKey(event)" required>
                   </div>
 
-                  <div class="form-group">
-
-                    <label for="img">Imagen</label>
-                    <input type="email" class="form-control" id="img" placeholder="Escriba un precio">
+                  <div class="photo">
+                    <label for="">Imagen del producto</label>
+                    <div class="prevPhoto">
+                      <span class="delPhoto notBlock">X</span>
+                      <label for="foto"></label>
+                    </div>
+                    <div class="upimg">
+                      <input type="file" name="foto" id="foto">
+                    </div>
+                    <div id="form_alert"></div>
                   </div>
+
                 </div>
 
                 <div class="col-sm derP">
 
                   <div class="form-group">
                     <label for="descrip">Descripción</label>
-                    <input type="text" class="form-control" id="descrip" placeholder="Escriba una descripción">
+                    <textarea class="form-control" id="descrip" name="descrip" placeholder="Ingrese una descripción" onkeypress="return isNumericKey(event)"></textarea>
                   </div>
-
-                  <div class="form-group">
-                    <label for="EstadoP">Estado</label>
-                    <input type="text" class="form-control" id="EstadoP" placeholder="Escriba una descripción">
-                  </div>
-
 
                   <div class="input-group mb-3">
                     <div class="input-group-prepend">
 
-                      <label for="tipoP" class="input-group-text" for="inputGroupSelect01">Tipo</label>
+                      <label class="input-group-text" for="inputGroupSelect01">Tipo</label>
                     </div>
-                    <select class="custom-select" id="inputGroupSelect01">
+                    <select id="tipoP" name="tipoP" class="form-select custom-select" aria-label="select example">
 
-                      <option selected>Selecciona</option>
+                      <option value="">Selecciona</option>
                       <?php
-                      $listaId = listarIdT();
+                      $listaId = listarTipoP();
                       for ($i = 0; $i < count($listaId); $i++) {
                       ?>
-                        <option value="<?php $id++ ?>"><?php
-                                echo $listaId[$i]["idTipoProducto"];
-                                ?></option>
+                        <option value="<?php echo $listaId[$i]["idTipoProducto"]; ?>"><?php
+                                                                                      echo $listaId[$i]["nombre"];
+                                                                                      ?></option>
                       <?php
                       }
                       ?>
                     </select>
-                    <div class="input-group-append">
-                      <span class="input-group-text">
-                      <?php echo $id ?>
-                      </span>
-                    </div>
                   </div>
 
-                  <button type="submit" class="btn btn-warning btnGuardar">Guardar</button>
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+
+                      <label for="subT" class="input-group-text" for="inputGroupSelect01">Subtipo</label>
+                    </div>
+                    <select id="subT" class="form-select custom-select" aria-label="select example">
+
+                      <option value="">Selecciona</option>
+                      <?php
+                      if (isset($_POST["tipoP"])) {
+                        $Tp = $_POST["tipoP"];
+
+                        if ($Tp = 1) {
+                          $listaIdC = listarTpC();
+                          for ($i = 0; $i < count($listaIdC); $i++) {
+                      ?>
+                            <option value="<?php echo $listaIdC[$i]["idTipoProducto"]; ?>"><?php
+                                                                                            echo $listaIdC[$i]["nombre"];
+                                                                                            ?></option>
+                          <?php
+                          }
+                          ?>
+                          <?php
+                        } elseif ($Tp = 2) {
+                          $listaIdB = listarTpB();
+                          for ($i = 0; $i < count($listaIdB); $i++) {
+                          ?>
+                            <option value="<?php echo $listaIdB[$i]["idTipoProducto"]; ?>"><?php
+                                                                                            echo $listaIdB[$i]["nombre"];
+                                                                                            ?></option>
+                      <?php
+                          }
+                        }
+                      }
+                      ?>
+
+
+                    </select>
+                  </div>
+                  <button type="button" name="save" id="btnGuardarP" class="btn btn-warning btnGuardar" value="Save to database">Guardar</button>
                 </div>
               </div>
             </div>
           </div>
-
+        </form>
       </div>
-      </form>
+
     </div>
   </div>
 
@@ -230,3 +270,72 @@ require_once('../controladores/controladorProducto.php');
 </body>
 
 </html>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/cesiumjs/1.78/Build/Cesium/Cesium.js"></script>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+
+    // $('#foto').on("change", function() {
+    //   var uploadFoto = document.getElementById("foto").value;
+    //   var foto = document.getElementById("foto").files;
+    //   var nav = window.URL || window.webkitURL;
+
+    //   if (uploadFoto != '') {
+    //     var type = foto[0].type;
+    //     var name = foto[0].name;
+    //     if (type != 'image/jpeg' && type != 'image/jpg' && type != 'image/png') {
+    //       contactAlert.innerHTML = '<p class="errorArchivo">El archivo no es válido.</p>';
+
+    //       $("#img").remove();
+    //       $(".delPhoto").addClass('notBlock');
+    //       $("#foto").val('');
+    //       return false;
+    //     } else {
+    //       contactAlert.innerHTML = '';
+    //       $("#img").remove();
+    //       $(".delPhoto").removeClass('notBlock');
+    //       var objeto_url = nav.createObjectURL(this.files[0]);
+    //       $(".prevPhoto").append("<img id='img' src=" + objeto_url + ">");
+    //       $(".unpimg label").remove();
+    //     }
+    //   } else {
+    //     alert("No seleccionó foto");
+    //     $("#img").remove();
+    //   }
+    // });
+
+    $('.delPhoto').click(function() {
+      $('#foto').val('');
+      $(".delPhoto").addClass('notBlock');
+      $("#img").remove();
+    });
+
+    $('#btnGuardarP').on('click', function() {
+      var nombre = $('#nombreP').val();
+      var precio = $('#precioP').val();
+      var descripcion = $('#descrip').val();
+
+      var op = 1;
+      if (nombre != "" || precio != "") {
+        $.ajax({
+          type: "POST",
+          url: "../paginas/saveProd.php",
+          data: {
+            nombre: nombre,
+            precio: precio,
+            descripcion: descripcion,
+            op: op
+          },
+          cache: false,
+          dataType: 'json',
+          success: function() {
+            alert("Registro guardado");
+          }
+        })
+      } else {
+        alert("Ingrese un nombre y/o precio");
+      }
+    })
+  });
+</script>

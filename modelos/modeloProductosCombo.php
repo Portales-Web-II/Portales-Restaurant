@@ -23,7 +23,19 @@ class ProductosCombo {
     public function getProductosCombo() {
 
         self::setNames();
-        $sql = "SELECT idProductosCombo, idProducto, cantidad FROM productosCombo";
+        $sql = "SELECT pc.idProductosCombo, p.nombre, pc.cantidad, pc.estado FROM productoscombo pc
+        INNER JOIN producto p ON pc.idProducto = p.idProducto";
+        foreach ($this->db->query($sql) as $res) {
+            $this->productosCombo[] = $res;
+        }
+        return $this->productosCombo;
+        $this->db = null;
+    }
+
+    public function getProductos() {
+
+        self::setNames();
+        $sql = "SELECT nombre FROM producto";
         foreach ($this->db->query($sql) as $res) {
             $this->productosCombo[] = $res;
         }
