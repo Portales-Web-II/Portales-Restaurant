@@ -2,6 +2,14 @@
     --colorTextos: #49454567;
 }
 
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+input[type=number] { -moz-appearance:textfield; }
+
 *,
 ::before,
 ::after {
@@ -11,7 +19,7 @@
 }
 
 body{
-    padding: 55px;
+    padding: 20px;
 }
 
 h1{
@@ -37,6 +45,33 @@ form{
 .form{
     width: 100%;
     margin: auto;
+}
+
+.alert{
+
+    width: 100%;
+    background: #66e07d66;
+    border-radius: 6px;
+    margin: 0;
+
+}
+
+.msg_error{
+
+    color: #e65656;
+     
+}
+
+.msg_save{
+
+    color: #126e00;
+
+}
+
+.alert p{
+
+    padding: 8px,
+
 }
 
 form .grupo{
