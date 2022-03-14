@@ -1,22 +1,31 @@
 <?php
 include('../controladores/controladorFiltroMenu.php');
 
-if(isset($_GET['TipoProducto']) && isset($_GET['SubTipoProducto'])){
-$Tipo = $_GET['TipoProducto'];
-$subTipo = $_GET['SubTipoProducto'];
+session_start();
+
+
+if (isset($_GET['TipoProducto']) && isset($_GET['SubTipoProducto'])) {
+    $Tipo = $_GET['TipoProducto'];
+    $subTipo = $_GET['SubTipoProducto'];
+    $_SESSION["Tipo"] = $Tipo;
+    $_SESSION["SubTipo"] = $subTipo;
 }
 
 
-function write_to_console($data) {
+$Tipo =  $_SESSION["Tipo"];
+$subTipo =  $_SESSION["SubTipo"];
+
+function write_to_console($data)
+{
     $console = $data;
     if (is_array($console))
-    $console = implode(',', $console);
-   
+        $console = implode(',', $console);
+
     echo "<script>console.log('Console: " . $console . "' );</script>";
-   }
-   
-   write_to_console($Tipo);
-   write_to_console($subTipo);
+}
+
+write_to_console($Tipo);
+write_to_console($subTipo);
 
 
 ?>
@@ -38,6 +47,11 @@ function write_to_console($data) {
 <body id="body-pd">
     <header class="header" id="header">
         <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div>
+        <div class="container">
+            <a class="navbar-brand" href="./Cart.php">
+                <img src="../src/imgs/cart.png" alt="" width="auto" height="60%">
+            </a>
+        </div>
         <div class="header_img"> <img src="../src/imgs/logoportalesw-preview.png"> </div>
     </header>
     <div class="l-navbar" id="nav-bar">
@@ -69,6 +83,7 @@ function write_to_console($data) {
                     <div class="card h-100 text-center">
                         <img src="../src/imgs/Almuerzos.jpg" class="card-img-top" alt="...">
                         <div class="card-body">
+                            <input name="precio" type="hidden" id="ID" value="<?php  ?>" />
                             <h5 class="card-title text-capitalize"><?php echo $lista[$i]["nombre"]; ?></h5>
                             <p class="card-text"><?php echo $lista[$i]["descripcion"]; ?></p>
                             <ul class="list-group list-group-flush">
@@ -76,7 +91,14 @@ function write_to_console($data) {
                                 <li class="list-group-item text-capitalize"><?php echo $lista[$i]["SubTipo"]; ?></li>
                                 <li class="list-group-item fw-bolder"> Lps. <?php echo $lista[$i]["precio"]; ?></li>
                             </ul>
-                            <button type="button" class="btn btn-warning">Agregar al carrito</button>
+                            <form action="vistaMenus.php" method="POST">
+                                <input name="ID" type="hidden" id="ID" value="<?php echo $lista[$i]["idProducto"]; ?>" />
+                                <input name="Nombre" type="hidden" id="Nombre" value="<?php echo $lista[$i]["nombre"]; ?>" />
+                                <input name="Cantidad" type="hidden" id="Cantidad" value="1" />
+                                <input name="Precio" type="hidden" id="Precio" value="<?php echo $lista[$i]["precio"]; ?>" />
+                                <button type="submit" value="Agregar" name="btnAgregar" class="btn btn-warning" >Agregar al carrito</button>
+                            </form>
+
                         </div>
                     </div>
                 </div>
@@ -91,4 +113,21 @@ function write_to_console($data) {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
+<?php 
+if(isset($_REQUEST["btnAgregar"])){
+    $id = $_REQUEST["ID"];
+    $producto = $_REQUEST["Nombre"];
+    $cantidad = $_REQUEST["Cantidad"];
+    $precio = $_REQUEST["Precio"];
+
+    echo "id $id, nombre: $producto, cantidad: $cantidad, precio: $precio";
+
+    $_SESSION["carrito"][$id]["ID"] = $id;
+    $_SESSION["carrito"][$id]["Nombre"] = $producto;
+    $_SESSION["carrito"][$id]["Cantidad"] = $cantidad;
+    $_SESSION["carrito"][$id]["Precio"] = $precio;
+
+    echo "<script>alert('Producto $producto agregado con éxito al carrito');</script>";
+}
+?>
 </html>

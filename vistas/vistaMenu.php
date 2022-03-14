@@ -17,7 +17,7 @@ require('../controladores/controladorProducto.php');
 
 <body id="body-pd">
     <header class="header" id="header">
-        <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div>
+    <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div>
         <div class="header_img"> <img src="../src/imgs/logoportalesw-preview.png"> </div>
     </header>
     <div class="l-navbar" id="nav-bar">
@@ -43,8 +43,8 @@ require('../controladores/controladorProducto.php');
             <?php
             $lista = listarTTp();
             for ($i = 0; $i < count($lista); $i++) {
-            $TipoProducto = $lista[$i]["tipo"];
-            $SubTipoProducto = $lista[$i]["subTipo"]; 
+                $TipoProducto = $lista[$i]["tipo"];
+                $SubTipoProducto = $lista[$i]["subTipo"];
 
             ?>
                 <div class="col">
@@ -56,7 +56,7 @@ require('../controladores/controladorProducto.php');
                         </div>
 
                         <div class="d-grid gap-2">
-                            <button type="submit" class="btn btn-warning" onclick="location.href='./vistaMenus.php?TipoProducto=<?php echo $TipoProducto;?>&SubTipoProducto=<?php echo $SubTipoProducto; ?>'" >Ver</button>
+                            <button type="submit" class="btn btn-warning" onclick="location.href='./vistaMenus.php?TipoProducto=<?php echo $TipoProducto; ?>&SubTipoProducto=<?php echo $SubTipoProducto; ?>'">Ver</button>
                         </div>
 
                     </div>

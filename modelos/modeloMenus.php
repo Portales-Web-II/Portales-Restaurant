@@ -21,7 +21,7 @@ class ProductosMenus{
     public function getProductos($TipoProductos, $SubTipoProductos)
     {
         self::setNames();
-        $sql = "SELECT P.nombre, P.precio, P.imagen, P.descripcion, Tp.nombre as SubTipo, 
+        $sql = "SELECT P.idProducto, P.nombre, P.precio, P.imagen, P.descripcion, Tp.nombre as SubTipo, 
         (SELECT Tp1.nombre as subTipo FROM tipoproducto AS Tp1 
         INNER JOIN tipoproducto as Tpp1 ON Tp1.idTipoProducto = Tpp1.idTipoPrincipal 
         where Tp1.idTipoProducto = Tp.idTipoPrincipal group by subTipo) as Tipo FROM producto AS P 
