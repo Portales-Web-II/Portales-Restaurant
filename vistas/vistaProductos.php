@@ -249,7 +249,7 @@ require_once('../controladores/controladorProducto.php');
 
                     </select>
                   </div>
-                  <button type="button" name="save" id="btnGuardarP" class="btn btn-warning btnGuardar" value="Save to database">Guardar</button>
+                  <button type="submit" name="save" id="btnGuardarP" class="btn btn-warning btnGuardar" value="Save to database">Guardar</button>
                 </div>
               </div>
             </div>
