@@ -4,6 +4,7 @@ include('../controladores/controladorFiltroMenu.php');
 session_start();
 
 
+
 if (isset($_GET['TipoProducto']) && isset($_GET['SubTipoProducto'])) {
     $Tipo = $_GET['TipoProducto'];
     $subTipo = $_GET['SubTipoProducto'];
@@ -29,6 +30,7 @@ write_to_console($subTipo);
 
 
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -120,7 +122,7 @@ if(isset($_REQUEST["btnAgregar"])){
     $cantidad = $_REQUEST["Cantidad"];
     $precio = $_REQUEST["Precio"];
 
-    echo "id $id, nombre: $producto, cantidad: $cantidad, precio: $precio";
+    // echo "id $id, nombre: $producto, cantidad: $cantidad, precio: $precio";
 
     $_SESSION["carrito"][$id]["ID"] = $id;
     $_SESSION["carrito"][$id]["Nombre"] = $producto;

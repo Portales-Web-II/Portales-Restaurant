@@ -341,23 +341,23 @@ ob_start();
 </html>
 <?php
 $html = ob_get_clean();
-echo $html;
+//echo $html;
 
-// require_once('../libs/dompdf/autoload.inc.php');
-// use Dompdf\Dompdf;
-// $dompdf = new Dompdf();
+require_once('../libs/dompdf/autoload.inc.php');
+use Dompdf\Dompdf;
+$dompdf = new Dompdf();
 
 
-// $options = $dompdf -> getOptions();
-// $options -> set(array('isRemoteEnabled' => true));
-// $dompdf -> setOptions($options);
+$options = $dompdf -> getOptions();
+$options -> set(array('isRemoteEnabled' => true));
+$dompdf -> setOptions($options);
 
-// $dompdf -> loadHtml($html);
+$dompdf -> loadHtml($html);
 
-// $dompdf -> setPaper('letter');
+$dompdf -> setPaper('letter');
 
-// $dompdf -> render();
+$dompdf -> render();
 
-// $dompdf -> stream("Factura_PortalesRestaurant.pdf", array("Attachment" => false));
+$dompdf -> stream("Factura_PortalesRestaurant.pdf", array("Attachment" => false));
 
 ?>

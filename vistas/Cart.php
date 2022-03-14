@@ -1,7 +1,43 @@
 <?php
 session_start();
 
+$total = 0; 
+
+echo "<h3>Carrito de compras:</h3>";
+if (isset($_SESSION["carrito"])) {
+    foreach ($_SESSION["carrito"] as $indice => $arreglo) {
+        echo "<hr><br>";
+        $total += $arreglo["Cantidad"] * $arreglo["Precio"];
+        foreach ($arreglo as $key => $value) {
+            echo $key . ": " . $value . "<br>";
+        }
+        echo "<a class='btn btn-danger aling-right'  href='Cart.php?item=$indice' >eliminar</a>";
+    }
+    echo "<h3>El total de la compra actual es de Lps.$total </h3>";
+} else {
+    echo "<script>alert('El carrito esta vacío');</script>";
 ?>
+    <a class="btn btn-info aling-right"  href="./vistaMenu.php" >Regresar a menu</a>
+<?php
+}
+
+if(isset($_REQUEST["vaciar"])){
+    unset($_SESSION["carrito"]);
+    header("Location:Cart.php");
+   
+}
+
+if(isset($_REQUEST["item"])){
+    $producto=$_REQUEST["item"];
+    //$_SESSION["carrito"][$id]["ID"] = $id;
+    unset($_SESSION["carrito"][$producto]);
+    header("Location:Cart.php");
+
+    // echo "<script>alert('Se elimino el producto: $producto');</script>";
+
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -38,55 +74,19 @@ session_start();
             </div> <a href="#" class="nav_link"> <i class='bx bx-log-out nav_icon'></i> <span class="nav_name">SignOut</span> </a>
         </nav>
     </div>
-
+    
     <div class="container-fluid bg-light">
-    <div class="">
-        <h1>Ordenes del pedido</h1>
-        <br>
-    </div>
+        <div class="col">
+            <button type="submit" class="btn btn-warning aling-left" onclick="location.href='Cart.php?vaciar=true'">Vaciar Carrito</button>
+            <form action="">
+                
+            </form>
+            <button type="submit" class="btn btn-success aling-right"  onclick="location.href='./VistaFactura.php'" >Facturar</a>
+        </div>
 
-            <?php 
-           if(isset($_SESSION["carrito"])){
-            foreach($_SESSION["carrito"] as $indice => $arreglo){
-            ?>
-    <div class="tab pane carrito">
-        <table class="table table-hover">
-            <thead>
-              <tr> 
-                <th scope="col">#</th>
-                <th scope="col">Producto</th>
-                <th scope="col">Precio</th>
-                <th scope="col">Cantidad</th>
-              </tr>
-            </thead>
-            <tbody class="tbody">
-            <td scope="col"><?php echo $indice ?></td>
-            <?php 
-            foreach($arreglo as $key => $value){
-            ?>
-                <td scope="col"><?php echo $value ?></td>
-          <?php } ?>
-            </tbody>
-          </table>
-          <?php } ?>
-          <br><br>
-          <row class="mx-4">
-              <div class="col">
-                  <h3 class="itemCartTotal">Total: 0</h3>
-              </div>
-              <div class="col d-flex justify-content-end">
-                  <a class="btn btn-success" onclick="showModal()">Facturar</a>
-              </div>
+        
 
     </div>
-    <?php 
-}
-else
-{
-    echo "<script>alert('El carrito esta vacio');</script>";
-    header("location:vistaMenus.php");
-}
-    ?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
