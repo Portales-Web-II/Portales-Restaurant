@@ -32,9 +32,9 @@
         <div class="nav_list">
           <a href="../index.php" class="nav_link"> <i class='bx bx-grid-alt nav_icon'></i> <span class="nav_name">Inicio</span> </a>
           <a href="#" class="nav_link"> <i class='bx bx-shopping-bag nav_icon'></i> <span class="nav_name">Ventas</span> </a>
-          <a href="#" class="nav_link"> <i class='bx bx-user nav_icon'></i> <span class="nav_name">Usuarios</span> </a>
+          <a href="#" class="nav_link active"> <i class='bx bx-user nav_icon'></i> <span class="nav_name">Usuarios</span> </a>
           <a href="#" class="nav_link"> <i class='bx bx-group nav_icon'></i> <span class="nav_name">Empleado</span> </a>
-          <a href="#" class="nav_link active"> <i class='bx bx-cabinet nav_icon'></i> <span class="nav_name">Inventario</span> </a>
+          <a href="#" class="nav_link"> <i class='bx bx-cabinet nav_icon'></i> <span class="nav_name">Inventario</span> </a>
         </div>
       </div> <a href="#" class="nav_link"> <i class='bx bx-log-out nav_icon'></i> <span class="nav_name">SignOut</span> </a>
     </nav>
@@ -47,6 +47,7 @@
           <th scope="col">Id</th>
           <th scope="col">Nombre</th>
           <th scope="col">Correo</th>
+          <th scope="col">IdPersona</th>
           <th scope="col">Estado</th>
           <th scope="col">Opciones</th>
         </tr>
@@ -74,6 +75,11 @@
             </td>
             <td>
             <?php
+            echo $listaUsuarios[$i]["idPersona"];
+            ?>
+            </td>
+            <td>
+            <?php
             echo $listaUsuarios[$i]["estado"];
             ?>
             </td>
@@ -87,6 +93,10 @@
         ?>
       </tbody>
     </table>
+    <center>
+      <button type="button" onclick="location.href='./RegistroUsuario.php'" class="btn btn-outline-warning">Registar Usuario</button>
+    </center>
+    
   </div>
 
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
