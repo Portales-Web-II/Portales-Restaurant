@@ -1,9 +1,10 @@
 
 <?php
 
+    session_start();
     include '../configuracion/conexionBase.php';
 
-    if(!empty($_POST)){
+    if(isset($_POST['registrar'])){
 
         $alert='';
         if(empty($_POST['identidad']) || empty($_POST['nomUsuario']) || empty($_POST['correo']) || empty($_POST['password']) || empty(['confirmPasswd'])){
@@ -16,25 +17,30 @@
             $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
 
 
-            $query = mysqli_query($conexion, "SELECT * FROM usuario WHERE nombreUsuario = '$nombre' OR correo = '$correo'"); 
-            $result = mysqli_fetch_array($query);
+            $sql = 'SELECT * FROM usuario';
+            $rec = mysqli_query($conexion, $sql);
+            while($rec = mysqli_fetch_object($rec)){
+                if($result->nombreUsuario == $nombre){
+                    $verificarUsuario = 1;
+                }
+            }
+            if($verificarUsuario){
+                // if(){
+
+                // }
+            }
 
             if($result > 0){
 
-                $alert='<p class="msg_error">El usuario y/o correo ya se encuentran registrados</p>';
+                $alert='<p class="msg_error">El usuario y/o correo ya se encuantran registrados</p>';
 
             }
             else{
 
-                $sql = "SELECT idPersona FROM persona WHERE identidad = '$identidad'";
-                if($queryId = $conexion->query($sql)){
-                    if($queryId->num_rows > 0){
-                        $row = $queryId->fetch_assoc();
-                        $id = $row["idPersona"];
-                    }
-                }
+                $idPersona = mysqli_query($conexion, "SELECT idPersona FROM persona WHERE identidad = '$identidad'");
 
-                $query_insert = mysqli_query($conexion, "INSERT INTO usuario(nombreUsuario,contrasena,correo, idPersona) VALUES ('$nombre','$password','$correo','$id')");
+                $query_insert = mysqli_query($conexion, "INSERT INTO usuario(nombreUsuario,contrasena,correo)
+                                                         VALUES ('$nombre','$correo','$password')");
 
                 if($query_insert){
                     $alert='<p class="msg_save">Usuario creado correctamente</p>';
