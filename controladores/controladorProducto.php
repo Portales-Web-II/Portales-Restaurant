@@ -32,4 +32,16 @@ function listar(){
      return $modeloProducto->getProducto();
 
 }
-?>
+
+function listarTpC(){
+    require_once('../modelos/modeloProducto.php');
+     $modeloProducto = new Producto();
+     return $modeloProducto->getTpComidas();
+
+}
+function listarTpB(){
+    require_once('../modelos/modeloProducto.php');
+     $modeloProducto = new Producto();
+     return $modeloProducto->getTpBebidas();
+
+}

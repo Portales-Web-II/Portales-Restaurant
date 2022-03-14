@@ -86,161 +86,24 @@ class Producto
         $this->db = null;
     }
 
-    // public function setGuardarTipoProducto($nombre) {
-
-    //     self::setNames();
-    //     $sql = "INSERT INTO tipoProducto (nombre) ('$nombre')";
-    //     $result = $this->db->query($sql);
-
-    //     if ($result) {
-    //         return true;
-    //     } else {
-    //         return false;
-    //     }
-    // }
-
-    // public function setGuardarTipoProducto($nombre, $idTipoPrincipal) {
-
-    //     self::setNames();
-    //     $sql = "INSERT INTO tipoProducto (nombre, idTipoPrincipal) ('$nombre', '$idTipoPrincipal')";
-    //     $result = $this->db->query($sql);
-
-    //     if ($result) {
-    //         return true;
-    //     } else {
-    //         return false;
-    //     }
-    // }
-
-    // public function setActualizarTipoProducto($id, $nombre, $idTipoPrincipal) {
-
-    //     self::setNames();
-    //     $sql = "UPDATE tipoProducto SET nombre = '$nombre', idTipoPrincipal = '$idTipoPrincipal' WHERE idTipoProducto = $id";
-    //     $result = $this->db->query($sql);
-
-    //     if ($result) {
-    //         return true;
-    //     } else {
-    //         return false;
-    //     }
-    // }
-
-    // public function setEliminarTipoProducto($id) {
-
-    //     self::setNames();
-    //     $sql = "DELETE FROM tipoProducto WHERE idTipoProducto = $id";
-    //     $result = $this->db->query($sql);
-
-    //     if ($result) {
-    //         return true;
-    //     } else {
-    //         return false;
-    //     }
-    // }
-    
-    // public function getBuscarTipoProducto($filtro) {
-
-    //     self::setNames();
-    //     $sql = "SELECT nombre, idTipoPrincipal FROM tipoProducto WHERE nombre like '%$filtro%'";
-    //     foreach ($this->db->query($sql) as $res) {
-    //         $this->tipoProducto[] = $res;
-    //     }
-    //     return $this->tipoProducto;
-    //     $this->db = null;
-    // }
-
-    // public function getBuscarIdTipoProducto($id) {
-
-    //     self::setNames();
-    //     $sql = "SELECT nombre, idTipoPrincipal FROM tipoProducto WHERE idTipoProducto like '%$id%'";
-    //     foreach ($this->db->query($sql) as $res) {
-    //         $this->tipoProducto[] = $res;
-    //     }
-    //     return $this->tipoProducto;
-    //     $this->db = null;
-    // }
-
-    public function setGuardarProducto($nombre, $precio, $idTipoProducto)
+    public function getTpComidas()
     {
-
         self::setNames();
-        $sql = "INSERT INTO producto (nombre, precio, idTipoProducto) ('$nombre', '$precio', '$idTipoProducto')";
-        $result = $this->db->query($sql);
-        if ($result) {
-            return true;
-        } else {
-            return false;
+        $sql = "SELECT idTipoProducto, nombre FROM tipoproducto WHERE idTipoPrincipal = 1;";
+        foreach ($this->db->query($sql) as $res) {
+            $this->producto[] = $res;
         }
+        return $this->producto;
+        $this->db = null;
     }
-
-
-    // public function setGuardarProducto($nombre, $precio, $imagen, $descripcion, $estado, $idTipoProducto) {
-
-    //     self::setNames();
-    //     $sql = "INSERT INTO producto (nombre, precio, imagen, descripcion, estado, idTipoProducto) ('$nombre', '$precio', '$imagen', '$descripcion', '$estado', '$idTipoProducto')";
-    //     $result = $this->db->query($sql);
-
-    //     if ($result) {
-    //         return true;
-    //     } else {
-    //         return false;
-    //     }
-    // }
-
-    // public function setActualizarProducto($id, $nombre, $precio, $descripcion) {
-
-    //     self::setNames();
-    //     $sql = "UPDATE producto SET nombre = '$nombre', precio = '$precio', descripcion = '$descripcion' WHERE idProducto = $id";
-    //     $result = $this->db->query($sql);
-
-    //     if ($result) {
-    //         return true;
-    //     } else {
-    //         return false;
-    //     }
-    // }
-    // public function setActualizarImagen($id, $imagen) {
-
-    //     self::setNames();
-    //     $sql = "UPDATE producto SET imagen='$imagen' WHERE id=$id";
-    //     $result = $this->db->query($sql);
-
-    //     if ($result) {
-    //         return true;
-    //     } else {
-    //         return false;
-    //     }
-    // }
-    // public function setEliminarProducto($id) {
-
-    //     self::setNames();
-    //     $sql = "UPDATE producto SET estado = 'inactivo' WHERE idProducto = $id)";
-    //     $result = $this->db->query($sql);
-
-    //     if ($result) {
-    //         return true;
-    //     } else {
-    //         return false;
-    //     }
-    // }
-    // public function getBuscarProducto($filtro) {
-
-    //     self::setNames();
-    //     $sql = "SELECT nombre, precio, imagen, descripcion, estado FROM producto WHERE nombre like '%$filtro%'";
-    //     foreach ($this->db->query($sql) as $res) {
-    //         $this->producto[] = $res;
-    //     }
-    //     return $this->producto;
-    //     $this->db = null;
-    // }
-    // public function getBuscarIdProducto($id) {
-
-    //     self::setNames();
-    //     $sql = "SELECT nombre, precio, imagen, descripcion, estado FROM producto WHERE idProducto like '%$id%'";
-    //     foreach ($this->db->query($sql) as $res) {
-    //         $this->producto[] = $res;
-    //     }
-    //     return $this->producto;
-    //     $this->db = null;
-    // }
+    public function getTpBebidas()
+    {
+        self::setNames();
+        $sql = "SELECT idTipoProducto, nombre FROM tipoproducto WHERE idTipoPrincipal = 2;";
+        foreach ($this->db->query($sql) as $res) {
+            $this->producto[] = $res;
+        }
+        return $this->producto;
+        $this->db = null;
+    }
 }

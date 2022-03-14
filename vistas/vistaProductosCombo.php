@@ -12,6 +12,8 @@ require_once('../controladores/controladorProductosCombo.php');
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
     <link rel="stylesheet" href="../styles/estilos.css">
     <script src="../js/menu.js"></script>
+
+    <script src="../js/validaciones.js"></script>
     <title>Portales Restaurant</title>
 </head>
 
@@ -72,6 +74,7 @@ require_once('../controladores/controladorProductosCombo.php');
                         <th scope="col">Id</th>
                         <th scope="col">Producto</th>
                         <th scope="col">Cantidad</th>
+                        <th scope="col">Estado</th>
                         <th scope="col">Acciones</th>
                     </tr>
                 </thead>
@@ -97,6 +100,11 @@ require_once('../controladores/controladorProductosCombo.php');
                                 ?>
                             </td>
                             <td>
+                                <?php
+                                echo $lista[$i]["estado"];
+                                ?>
+                            </td>
+                            <td>
                                 <button type="button" class="btn btn-outline-danger">Eliminar</button>
                                 <button type="button" class="btn btn-outline-warning">Modificar</button>
                             </td>
@@ -109,7 +117,7 @@ require_once('../controladores/controladorProductosCombo.php');
         </div>
 
         <div class="d-flex justify-content-center formP">
-            <form>
+            <form class="was-validated">
                 <div class="tituloF">
                     <h5>
                         Productos combo
@@ -122,31 +130,44 @@ require_once('../controladores/controladorProductosCombo.php');
                                 <div class="form-group">
                                     <label for="inputEstado">Producto</label>
                                     <div class="input-group mb-3">
-                                        <select class="custom-select" id="inputGroupSelect01">
-
-                                            <option selected>Selecciona</option>
-                                        </select>
                                         <div class="input-group-append">
                                             <span class="input-group-text">Producto</span>
                                         </div>
+                                        <select id="OpPro" class="form-select custom-select" required aria-label="select example">
+
+                                            <option value="">Selecciona</option>
+                                            <?php
+                                            $listaP = listarPro();
+                                            for ($i = 0; $i < count($listaP); $i++) {
+                                            ?>
+                                                <option value="<?php $ir++ ?>"><?php
+                                                                                echo $listaP[$i]["nombre"];
+                                                                                ?></option>
+                                            <?php
+                                            }
+                                            ?>
+                                        </select>
+
                                     </div>
                                 </div>
 
                                 <div class="form-group">
 
                                     <label for="cantidad">Cantidad</label>
-                                    <input type="text" class="form-control" id="cantidad" placeholder="Escriba un precio">
+                                    <input type="text" class="form-control is-invalid" id="cantidad" placeholder="Escriba un precio" onkeypress="return isNumberKey(event)" required>
                                 </div>
 
-                                <div class="form-group">
-                                    <label for="inputEstado">Estado</label>
-                                    <div class="input-group mb-3">
-                                        <select class="custom-select" id="inputEstado">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
 
-                                            <option selected>Activo</option>
-                                            <option selected>Inactivo</option>
-                                        </select>
+                                        <label for="OpEstado" class="input-group-text" for="inputGroupSelect01">Estado</label>
                                     </div>
+                                    <select id="OpEstado" class="form-select custom-select" required aria-label="select example">
+
+                                        <option value="">Selecciona</option>
+                                        <option value="1">Activo</option>
+                                        <option value="2">Inactivo</option>
+                                    </select>
                                 </div>
                                 <button type="submit" class="btn btn-warning btnGuardar">Guardar</button>
                             </div>

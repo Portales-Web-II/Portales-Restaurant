@@ -12,6 +12,7 @@ require_once('../controladores/controladorCombo.php');
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
     <link rel="stylesheet" href="../styles/estilos.css">
     <script src="../js/menu.js"></script>
+    <script src="../js/validaciones.js"></script>
     <title>Portales Restaurant</title>
 </head>
 
@@ -139,7 +140,7 @@ require_once('../controladores/controladorCombo.php');
         </div>
 
         <div class="d-flex justify-content-center formP">
-            <form>
+            <form action="" method="post" class="was-validated">
                 <div class="tituloF">
                     <h5>
                         Combo
@@ -152,32 +153,42 @@ require_once('../controladores/controladorCombo.php');
                                 <div class="form-group grupoF">
 
                                     <label for="nombreP">Nombre</label>
-                                    <input type="text" class="form-control" id="nombreP" placeholder="Escriba un nombre">
+                                    <input type="text" class="form-control is-invalid" id="nombreP" placeholder="Escriba un nombre" onkeypress="return isNumericKey(event)" required>
                                 </div>
 
                                 <div class="form-group">
 
                                     <label for="precioP">Precio</label>
-                                    <input type="text" class="form-control" id="precioP" placeholder="Escriba un precio">
+                                    <input type="text" class="form-control is-invalid" id="precioP" placeholder="Escriba un precio" onkeypress="return isNumberKey(event)" required>
                                 </div>
 
                                 <div class="form-group">
-
-                                    <label for="img">Imagen</label>
-                                    <input type="email" class="form-control" id="img" placeholder="Escriba un precio">
+                                    <div class="mb-3">
+                                        <label for="imgCombo">Imagen</label>
+                                        <input id="imgCombo" type="file" class="form-control" aria-label="file example" required>
+                                        <div class="invalid-feedback">Example invalid form file feedback</div>
+                                    </div>
                                 </div>
                             </div>
 
                             <div class="col-sm derP">
 
                                 <div class="form-group">
-                                    <label for="descrip">Detalle</label>
-                                    <input type="text" class="form-control" id="descrip" placeholder="Escriba una descripción">
+                                    <label for="detal">Detalle</label>
+                                    <textarea class="form-control is-invalid" id="detal" placeholder="Ingrese un detalle" onkeypress="return isNumericKey(event)" required></textarea>
                                 </div>
 
-                                <div class="form-group">
-                                    <label for="EstadoP">Estado</label>
-                                    <input type="text" class="form-control" id="EstadoP" placeholder="Escriba una descripción">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+
+                                        <label for="OpEstado" class="input-group-text" for="inputGroupSelect01">Estado</label>
+                                    </div>
+                                    <select id="OpEstado" class="form-select custom-select" required aria-label="select example">
+
+                                        <option value="">Selecciona</option>
+                                        <option value="1">Activo</option>
+                                        <option value="2">Inactivo</option>
+                                    </select>
                                 </div>
 
                                 <button type="submit" class="btn btn-warning btnGuardar">Guardar</button>

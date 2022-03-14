@@ -12,7 +12,7 @@ require_once('../controladores/controladorProducto.php');
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
     <link rel="stylesheet" href="../styles/estilos.css">
     <script src="../js/menu.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="../js/validaciones.js"></script>
     <title>Portales Restaurant</title>
 </head>
 
@@ -91,18 +91,18 @@ require_once('../controladores/controladorProducto.php');
                                         <tr>
                                             <td>
                                                 <?php
-                                                echo $listaTp[$r]["idTipoProducto"];
+                                                echo $listaTp[$r]['idTipoProducto'];
                                                 ?>
                                             </td>
 
                                             <td>
                                                 <?php
-                                                echo $listaTp[$r]["nombre"];
+                                                echo $listaTp[$r]['nombre'];
                                                 ?>
                                             </td>
 
                                             <td>
-                                                <button type="button" class="btn btn-outline-warning">Modificar</button>
+                                                <button type="button" class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#modal_modificarTp" data-idTp="<?php $idTpA = $listaTp[$r]['idTipoProducto']; ?>">Modificar</button>
                                             </td>
                                         </tr>
                                     <?php
@@ -164,56 +164,56 @@ require_once('../controladores/controladorProducto.php');
                 </div>
                 <div class="row">
                     <div class="col-sm formTp">
-                        <ul class="msjForm">
-                            <li>Ingrese un nombre</li>
-                        </ul>
-                        <form>
-                            <div class="mx-auto tituloF" style="width: 200px;">
+                        <form action="" method="post" class="was-validated">
+                            <div class="mx-auto tituloF">
                                 <h5>
                                     Tipo Principal
                                 </h5>
                                 <div class="form-group grupoF">
-                                    <label for="nombreSt">Nombre</label>
-                                    <input type="text" name="nombreTp" class="form-control" id="nombreSt" placeholder="Escriba un nombre">
+                                    <label for="nombreTp" class="form-label">Nombre</label>
+                                    <input type="text" value="" class="form-control is-invalid" id="nombreTp" name="nombreTp" placeholder="Escriba un nombre" onkeypress="return isNumericKey(event)" required>
                                 </div>
-                                <button type="button" name="save_Tp" onclick="guardarTp();" class="btn btn-warning btnGuardar">Guardar</button>
+                                <button type="submit" name="save" id="btnGuardarTp" class="btn btn-warning btnGuardar" value="Save to database">Guardar</button>
                             </div>
                         </form>
                     </div>
-                    <div class="col">
-                        <div class="col-sm formSt">
-                            <form>
-                                <div class="mx-auto tituloF" style="width: 250px;">
-                                    <h5>
-                                        Subtipos
-                                    </h5>
-                                    <div class="form-group grupoF">
-                                        <label for="nombreSt">Nombre</label>
-                                        <input type="text" class="form-control" id="nombreSt" placeholder="Escriba un nombre">
-                                    </div>
-
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <label for="tipoP" class="input-group-text" for="inputGroupSelect01">Tipo Principal</label>
-                                        </div>
-                                        <select class="custom-select" id="inputGroupSelect01">
-                                            <option selected>Selecciona</option>
-                                            <?php
-                                            $tiposP = listarTipoP();
-                                            for ($i = 0; $i < count($tiposP); $i++) {
-                                            ?>
-                                                <option><?php
-                                                        echo $tiposP[$i]["nombre"];
-                                                        ?></option>
-                                            <?php
-                                            }
-                                            ?>
-                                        </select>
-                                    </div>
-                                    <button type="submit" class="btn btn-warning btnGuardar">Guardar</button>
+                    <div class="col-sm formSt">
+                        <form action="" method="post" class="was-validated">
+                            <div class="mx-auto tituloF">
+                                <h5>
+                                    Subtipos
+                                </h5>
+                                <div class="form-group grupoF">
+                                    <label for="nombreSt" class="form-label">Nombre</label>
+                                    <input type="text" value="" class="form-control is-invalid" id="nombreSt" name="nombreSt" placeholder="Escriba un nombre" onkeypress="return isNumericKey(event)" required>
                                 </div>
-                            </form>
-                        </div>
+
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+
+                                        <label for="OpTipoP" class="input-group-text" for="inputGroupSelect01">Tipo principal</label>
+                                    </div>
+                                    <select name="OpTipoP" id="OpTipoP" class="form-select custom-select" required aria-label="select example">
+
+                                        <option value="">Selecciona</option>
+                                        <?php
+                                        $tiposP = listarTipoP();
+                                        for ($i = 0; $i < count($tiposP); $i++) {
+                                        ?>
+                                            <option value="<?php echo $tiposP[$i]["idTipoProducto"]; ?>"><?php
+                                                                                                            echo $tiposP[$i]["nombre"];
+                                                                                                            ?></option>
+                                        <?php
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+                                <button type="button" name="save" id="btnGuardarSt" class="btn btn-warning btnGuardar" value="Save to database">Guardar</button>
+                            </div>
+                            <?php
+                            include('../modals/modalGuardar.php');
+                            ?>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -222,11 +222,87 @@ require_once('../controladores/controladorProducto.php');
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
 </body>
-<script type="text/javascript">
-    function guardarTp() {
-        var nombreTp = $('input[nombreTp=nombreTp]').val();
-    }
-</script>
 
 </html>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/cesiumjs/1.78/Build/Cesium/Cesium.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#btnGuardarTp').on('click', function() {
+            var nombre = $('#nombreTp').val();
+            var op = 1;
+            if (nombre != "") {
+                $.ajax({
+                    type: "POST",
+                    url: "../paginas/saveTp.php",
+                    data: {
+                        nombre: nombre,
+                        op: op
+                    },
+                    cache: false,
+                    dataType: 'json',
+                    success: function() {
+                        alert("Registro guardado");
+                    }
+                })
+            } else {
+                alert("Ingrese un nombre");
+            }
+        })
+    });
+    $(document).ready(function() {
+        $('#btnModificarTp').on('click', function() {
+            var idTipoProducto = $(<?php echo $idTpA; ?>);
+            var nombre = $('#nombreTpA').val();
+            var op = 2;
+            if (nombre != "") {
+                $.ajax({
+                    type: "POST",
+                    url: "../paginas/saveTp.php",
+                    data: {
+                        idTipoProducto: idTipoProducto,
+                        nombre: nombre,
+                        op: op
+                    },
+                    cache: false,
+                    dataType: 'json',
+                    success: function() {
+                        alert("Registro actualizado");
+                    }
+                })
+            } else {
+                alert("Ingrese un nombre");
+            }
+        })
+    });
+
+    $(document).ready(function() {
+        $('#btnGuardarSt').on('click', function() {
+            $('select#OpTipoP').on('change', function(idTipoPrincipal) {
+                var idTipoPrincipal = $(this).val();
+            });
+            var nombre = $('#nombreSt').val();
+            var op = 1;
+            if (nombre != "" || idTipoPrincipal != "") {
+                $.ajax({
+                    type: "POST",
+                    url: "../paginas/saveSt.php",
+                    data: {
+                        nombre: nombre,
+                        idTipoPrincipal: idTipoPrincipal,
+                        op: op
+                    },
+                    cache: false,
+                    dataType: 'json',
+                    success: function() {
+                        alert("Registro guardado");
+                    }
+                })
+            } else {
+                alert("Ingrese un nombre y tipo");
+            }
+        })
+    });
+</script>
