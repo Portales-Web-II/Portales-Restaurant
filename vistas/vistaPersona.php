@@ -38,7 +38,7 @@ require_once('../controladores/controladorPersona.php');
                     <a href="./vistaPersona.php" class="nav_link active"> <i class='bx bx-group nav_icon'></i> <span class="nav_name">Empleado</span> </a>
                     <a href="./vistaProductos.php" class="nav_link"> <i class='bx bx-cabinet nav_icon'></i> <span class="nav_name">Inventario</span> </a>
                 </div>
-      </div> <a href="#" class="nav_link"> <i class='bx bx-log-out nav_icon'></i> <span class="nav_name">SignOut</span> </a>
+                </div> <a href="./vistas/login.php" class="nav_link"> <i class='bx bx-log-out nav_icon'></i> <span class="nav_name">SignOut></span> </a>
     </nav>
   </div>
 
