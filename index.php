@@ -1,3 +1,13 @@
+<?php
+
+    // include('./controladores/sesion_Usuario.php');
+
+    // if(!isset($_SESSION['Usuario'])){
+    //     header("Location: ./vistas/login.php");
+    // }
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

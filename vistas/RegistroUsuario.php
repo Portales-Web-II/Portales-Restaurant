@@ -1,23 +1,53 @@
 
 <?php
 
-    // require '../configuracion/db.php';
+    include '../configuracion/conexionBase.php';
 
-    // $messaje='';
+    if(!empty($_POST)){
 
-    // if(!empty($_POST['nomUsuario']) && !empty(['correo']) && !empty(['password']) && !empty(['confirmPasswd'])){
+        $alert='';
+        if(empty($_POST['identidad']) || empty($_POST['nomUsuario']) || empty($_POST['correo']) || empty($_POST['password']) || empty(['confirmPasswd'])){
+            $alert='<p class="msg_error">Debe llenar todos los campos</p>';
+        }
+        else{
+            $identidad = $_POST['identidad'];
+            $nombre = $_POST['nomUsuario'];
+            $correo = $_POST['correo'];
+            $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
 
-    //     $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
-    //     $sql = "INSERT INTO usuario (nombreUsuario, correo, contrasena, select max(idPersona) AS idPersona FROM persona) VALUES (:nomUsuario, :correo, $password)";
-    //     $stmt = $conexion->prepare($sql);        
 
-    //     if ($stmt->execute()) {
-    //         $messaje = 'Se registró exitosamente el usuario';
-    //     }
-    //     else{
-    //         $messaje = 'Error al reggistrar el usuario'; 
-    //     }
-    // }
+            $query = mysqli_query($conexion, "SELECT * FROM usuario WHERE nombreUsuario = '$nombre' OR correo = '$correo'"); 
+            $result = mysqli_fetch_array($query);
+
+            if($result > 0){
+
+                $alert='<p class="msg_error">El usuario y/o correo ya se encuentran registrados</p>';
+
+            }
+            else{
+
+                $sql = "SELECT idPersona FROM persona WHERE identidad = '$identidad'";
+                if($queryId = $conexion->query($sql)){
+                    if($queryId->num_rows > 0){
+                        $row = $queryId->fetch_assoc();
+                        $id = $row["idPersona"];
+                    }
+                }
+
+                $query_insert = mysqli_query($conexion, "INSERT INTO usuario(nombreUsuario,contrasena,correo, idPersona) VALUES ('$nombre','$password','$correo','$id')");
+
+                if($query_insert){
+                    $alert='<p class="msg_save">Usuario creado correctamente</p>';
+                }
+                else{
+                    $alert='<p class="msg_error">Error al crear el usuario</p>';
+                }
+
+            }
+
+        }
+
+    }
 
 ?>
 
@@ -35,11 +65,12 @@
 </head>
 <body class="img js-fullheight" style="background-image: url(../src/imgs/food.jpg);">
         <center>
-        <form action="", method="$_POST">
+        <form action="", method="POST">
             <div class="form">
                 <h1>Crea tu Cuenta</h1>
+                <div class="alert"><?php echo isset($alert) ? $alert : ''?></div>
                 <div class="grupo">
-                    <input type="number" min="1", name="identidad" id="" required><span class="barra"></span>
+                    <input type="number" min="1", maxlength="13", name="identidad" id="" required><span class="barra"></span>
                     <label>Identidad</label>
                 </div>
                 <div class="grupo">
@@ -77,13 +108,13 @@
 
                 </script>
 
-                <p>
+                <!-- <p>
                     <center>
                         <h6 >Al registarse usted acepta nuestros <br> 
                                 <a href="#">Terminos de Uso</a> y <a href="#">Politicas de Privacidad</a> 
                         </h6> 
                     </center>                                          
-                </p>
+                </p> -->
 
             </div>
         </form>
