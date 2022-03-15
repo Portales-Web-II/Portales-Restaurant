@@ -83,7 +83,7 @@ write_to_console($subTipo);
             ?>
                 <div class="col">
                     <div class="card h-100 text-center">
-                        <img src="../src/imgs/Almuerzos.jpg" class="card-img-top" alt="...">
+                        <img src="../src/imgs/<?php echo $lista[$i]["imagen"]?>" class="card-img-top" alt="...">
                         <div class="card-body">
                             <input name="precio" type="hidden" id="ID" value="<?php  ?>" />
                             <h5 class="card-title text-capitalize"><?php echo $lista[$i]["nombre"]; ?></h5>
